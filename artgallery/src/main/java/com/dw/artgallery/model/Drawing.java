@@ -15,4 +15,7 @@ public class Drawing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="img_url")
+    private String imgUrl;
 }
