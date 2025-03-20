@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="공지사항")
-public class Notice {
+@Table(name="작품")
+public class Art {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,11 +21,19 @@ public class Notice {
     @Column(name="title")
     private String title;
 
-    @Column(name = "content", nullable = false, columnDefinition = "TEXT")
-    private String content;
+    @Column(name="img_url")
+    private String imgUrl;
 
-    @Column(name="created_date", nullable = false)
-    private LocalDate createdDate = LocalDate.now();
+    @Column(name = "description")
+    private String description;
+
+    @Column(name="completion_date")
+    private LocalDate completionDate;
+
+    @ManyToOne
+    @JoinColumn(name="artist_id")
+    private Artist artist;
+
 
 
 }

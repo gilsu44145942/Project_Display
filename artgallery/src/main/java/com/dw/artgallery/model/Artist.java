@@ -3,6 +3,7 @@ package com.dw.artgallery.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -21,10 +22,17 @@ public class Artist {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "artist")
-    @Column(name = "biography")
-    private List<Biography> biographyList;
-
     @Column(name = "profile_img")
     private String profile_img;
+
+    @OneToMany(mappedBy = "artist")
+    private List<Biography> biographyList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "artist")
+    private List<Art> artList = new ArrayList<>();
+
+
+    @ManyToMany(mappedBy = "artistList")
+    private List<ArtistGallery> artistGalleryList = new ArrayList<>();
+
 }

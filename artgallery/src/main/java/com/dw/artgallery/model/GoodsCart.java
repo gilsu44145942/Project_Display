@@ -9,10 +9,24 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name="굿즈_장바구니")
+@Table(name="굿즈장바구니")
 public class GoodsCart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne
+    @JoinColumn(name="goods_id")
+    private Goods goods;
+
+
+    @OneToOne
+    @JoinColumn(name="user_name")
+    private User user;
+
+
+
+
+
 }

@@ -19,6 +19,18 @@ public class Community {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy="comment_list")
+    @Column(name="title")
+    private String title;
+
+    @Column(name="text")
+    private String text;
+
+    @ManyToMany
+    @JoinTable(name = "커뮤니티_드로잉",
+            joinColumns = @JoinColumn(name = "community_id"),
+            inverseJoinColumns = @JoinColumn(name = "drawing_id"))
+    private List<Drawing> drawingList = new ArrayList<>();
+
+    @OneToMany(mappedBy="community")
     private List<Comment> commentList = new ArrayList<>();
 }

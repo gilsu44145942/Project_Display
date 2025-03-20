@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name="굿즈_상품")
+@Table(name="굿즈상품")
 public class Goods {
 
     @Id

@@ -23,4 +23,10 @@ public class Biography {
 
     @Column(name = "year") //수상연도
     private LocalDate year;
+
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
+
+
 }

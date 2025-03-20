@@ -29,6 +29,10 @@ public class Comment {
     private LocalDateTime modifyDate;
 
     @ManyToOne
+    @JoinColumn(name="community_id")
+    private Community community;
+
+    @ManyToOne
     @JoinColumn(name="user_name")
     private User userName;
 

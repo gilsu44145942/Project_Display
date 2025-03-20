@@ -18,17 +18,5 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_name", nullable = false)
-    private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "display_name", nullable = false)
-    private Display display;
-
-    @Column(name = "purchase_date", nullable = false)
-    private LocalDate purchaseDate;
-
-    @Column(name = "expiration_date", nullable = false)
-    private LocalDate expirationDate;
 }
