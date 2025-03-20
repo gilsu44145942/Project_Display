@@ -1,7 +1,6 @@
 package com.dw.artgallery.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @NoArgsConstructor
@@ -12,4 +11,8 @@ import lombok.*;
 @Entity
 @Table(name="공지사항")
 public class Notice {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 }
