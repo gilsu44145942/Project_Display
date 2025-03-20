@@ -1,9 +1,6 @@
 package com.dw.artgallery.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -32,6 +29,14 @@ public class User {
 
     @Column(name="point")
     private double point;
+
+    @Column(name="gender")
+    private String gender;
+
+    @ManyToOne
+    @JoinColumn(name = "user_authority")
+    private Authority authority;
+
 
 
 }
