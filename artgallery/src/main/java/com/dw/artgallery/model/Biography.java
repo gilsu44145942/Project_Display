@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="biography")
+@Table(name="수상경력")
 public class Biography {
 
     @Id
@@ -23,10 +23,6 @@ public class Biography {
 
     @Column(name = "year",nullable = false) //수상연도
     private LocalDate year;
-
-    @ManyToOne
-    @JoinColumn(name = "artist_id")
-    private Artist artist;
 
 
 }

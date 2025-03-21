@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name="drawing")
+@Table(name="드로잉")
 public class Drawing {
 
     @Id
@@ -32,7 +32,6 @@ public class Drawing {
     @Column(name="completion_date")
     private LocalDate completionDate;
 
-
-
-
+    @ManyToMany(mappedBy = "drawingList")
+    private List<Community> communityList = new ArrayList<>();
 }

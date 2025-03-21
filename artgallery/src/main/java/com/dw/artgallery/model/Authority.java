@@ -12,7 +12,7 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name="authority")
+@Table(name="권한")
 public class Authority {
 
     @Id

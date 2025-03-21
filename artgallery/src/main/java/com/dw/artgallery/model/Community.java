@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name="community")
+@Table(name = "커뮤니티")
 public class Community {
 
     @Id
@@ -25,16 +25,17 @@ public class Community {
     @Column(name = "text")
     private String text;
 
-    @Column(name="like")
-    private int like;
+    @Column(name = "likes")
+    private Long likes;
 
-    @OneToMany(mappedBy = "community")
-    private List<Comment> commentList = new ArrayList<>();
 
-//    @ManyToMany(mappedBy = "communityList")
-    @Column(name = "drawingList")
+    @ManyToMany
+    @JoinTable(name = "커뮤니티_드로잉",
+            joinColumns = @JoinColumn(name = "community_id"),
+            inverseJoinColumns = @JoinColumn(name = "drawing_id"))
     private List<Drawing> drawingList = new ArrayList<>();
 
-
-
+    @OneToMany
+    @JoinColumn(name = "comment")
+    private List<Comment> commentList = new ArrayList<>();
 }

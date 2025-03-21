@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="notice")
+@Table(name="공지사항")
 public class Notice {
 
     @Id

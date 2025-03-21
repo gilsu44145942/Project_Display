@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @Entity
-@Table(name="comment")
+@Table(name="답글")
 public class Comment {
 
     @Id
@@ -28,9 +28,6 @@ public class Comment {
     @Column(name="modify_date",nullable = false)
     private LocalDateTime modifyDate;
 
-    @ManyToOne
-    @JoinColumn(name="community_id")
-    private Community community;
 
     @ManyToOne
     @JoinColumn(name="user_name")

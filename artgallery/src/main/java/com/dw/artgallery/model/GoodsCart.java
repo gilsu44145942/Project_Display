@@ -9,12 +9,16 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name="goodsCart")
+@Table(name="굿즈장바구니")
 public class GoodsCart {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="amount")
+    private int amount;
 
     @OneToOne
     @JoinColumn(name="goods_id")
@@ -24,6 +28,7 @@ public class GoodsCart {
     @OneToOne
     @JoinColumn(name="user_name")
     private User user;
+
 
 
 

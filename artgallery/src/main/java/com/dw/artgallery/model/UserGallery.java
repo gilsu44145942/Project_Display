@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name="userGallery")
+@Table(name="사용자전시회")
 public class UserGallery {
 
     @Id

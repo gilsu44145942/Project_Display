@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @Entity
-@Table(name="chatting")
+@Table(name="채팅")
 public class Chatting {
 
     @Id

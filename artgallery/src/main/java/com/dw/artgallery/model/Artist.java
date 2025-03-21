@@ -12,20 +12,21 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name="artist")
+@Table(name = "아티스트")
 public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name",nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "profile_img")
     private String profile_img;
 
-    @OneToMany(mappedBy = "artist")
+    @OneToMany
+    @JoinColumn(name = "artist")
     private List<Biography> biographyList = new ArrayList<>();
 
     @OneToMany(mappedBy = "artist")
