@@ -20,6 +20,9 @@ public class GoodsCart {
     @Column(name="amount")
     private int amount;
 
+    @Column(name="sum")
+    private double sum;
+
     @OneToOne
     @JoinColumn(name="goods_id")
     private Goods goods;

@@ -18,14 +18,10 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_name")
-    private User user;
 
     @ManyToOne
     @JoinColumn(name = "artistGallery_id")
     private ArtistGallery artistGallery;
-
 
 
     @Column(name="purchase_date",nullable = false)

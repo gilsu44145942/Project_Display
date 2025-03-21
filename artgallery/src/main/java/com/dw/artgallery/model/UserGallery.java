@@ -26,6 +26,9 @@ public class UserGallery {
     @Column(name="poster_url",nullable = false)
     private String posterUrl;
 
+    @Column(name="price")
+    private double price; //가격은 0원으로 동일 하지만 예약과 티켓 관리를 위해 컬럼 정의
+
     @Column(name = "description",nullable = false)
     private String description;
 

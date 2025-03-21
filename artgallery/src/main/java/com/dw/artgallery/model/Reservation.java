@@ -20,13 +20,20 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="count")
+    private int count; //예약한 인원 수 회원인 경우롸 별개로 유저가 여러명의 티켓을 발급할수 있도록
+
+    @Column(name="sum")
+    private double sum;
+
+
     @ManyToOne
     @JoinColumn(name = "user_name")
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "artistGallery_id")
-    private ArtistGallery artistGallery;
+    private ArtistGallery artistGallery; // artistGallery 에서 가격을 가져와 인원수와 가격을 합쳐 총 금액을 합산
 
     @Column(name = "reservation_date",nullable = false)
     private LocalDate reservationDate;

@@ -19,6 +19,10 @@ public class Purchase {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name="goods_sum")
+    private GoodsCart goodsCart;
+
+    @OneToOne
     @JoinColumn(name="goods_id")
     private Goods goods;
 
@@ -28,5 +32,7 @@ public class Purchase {
 
     @Column(name="purchase_date",nullable = false)
     private LocalDate purchaseDate;
+
+
 
 }
