@@ -12,25 +12,29 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name="커뮤니티")
+@Table(name="community")
 public class Community {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
 
-    @Column(name="text")
+    @Column(name = "text")
     private String text;
 
-    @ManyToMany
-    @JoinTable(name = "커뮤니티_드로잉",
-            joinColumns = @JoinColumn(name = "community_id"),
-            inverseJoinColumns = @JoinColumn(name = "drawing_id"))
+    @Column(name="like")
+    private int like;
+
+    @OneToMany(mappedBy = "community")
+    private List<Comment> commentList = new ArrayList<>();
+
+//    @ManyToMany(mappedBy = "communityList")
+    @Column(name = "drawingList")
     private List<Drawing> drawingList = new ArrayList<>();
 
-    @OneToMany(mappedBy="community")
-    private List<Comment> commentList = new ArrayList<>();
+
+
 }

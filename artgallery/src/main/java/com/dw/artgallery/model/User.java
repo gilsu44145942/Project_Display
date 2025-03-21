@@ -1,5 +1,6 @@
 package com.dw.artgallery.model;
 
+import com.dw.artgallery.enums.Gender;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,27 +12,34 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="사용자")
+@Table(name="user")
 public class User {
 
     @Id
-    @Column(name="user_name",nullable = false, unique = true)
-    private String userName;
+    @Column(name="user_id",nullable = false, unique = true)
+    private String userId;
 
-    @Column(name="password")
+    @Column(name="password", nullable = false)
     private String password;
 
-    @Column(name="email")
+    @Column(name = "nickname", nullable = false, unique = true)
+    private String nickName;
+
+    @Column(name = "real_name", nullable = false)
+    private String realName;
+
+    @Column(name="email", nullable = false, unique = true)
     private String email;
 
-    @Column(name="birthday")
+    @Column(name="birthday", nullable = false)
     private LocalDate birthday;
 
     @Column(name="point")
     private double point;
 
     @Column(name="gender")
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @ManyToOne
     @JoinColumn(name = "user_authority")

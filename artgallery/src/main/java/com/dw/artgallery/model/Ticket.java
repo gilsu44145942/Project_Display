@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="전시티켓")
+@Table(name="ticket")
 public class Ticket {
 
     @Id
@@ -23,14 +23,12 @@ public class Ticket {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "userGallery_id")
-    private UserGallery userGallery;
+    @JoinColumn(name = "artistGallery_id")
+    private ArtistGallery artistGallery;
 
-    @ManyToOne
-    @JoinColumn(name = "reservation_id")
-    private Reservation reservation;
 
-    @Column(name="purchase_date")
+
+    @Column(name="purchase_date",nullable = false)
     private LocalDate purchaseDate;
 
 }

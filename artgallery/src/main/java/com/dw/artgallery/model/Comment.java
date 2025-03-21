@@ -12,20 +12,20 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @Entity
-@Table(name="답글")
+@Table(name="comment")
 public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="text")
+    @Column(name="text",nullable = false)
     private String text;
 
-    @Column(name="creation_date")
+    @Column(name="creation_date",nullable = false)
     private LocalDate creationDate;
 
-    @Column(name="modify_date")
+    @Column(name="modify_date",nullable = false)
     private LocalDateTime modifyDate;
 
     @ManyToOne

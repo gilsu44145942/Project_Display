@@ -13,20 +13,20 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name="작가전시회")
+@Table(name="artistGallery")
 public class ArtistGallery {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "title",nullable = false)
     private String title;
 
-    @Column(name="poster_url")
+    @Column(name="poster_url",nullable = false)
     private String posterUrl;
 
-    @Column(name = "description")
+    @Column(name = "description",nullable = false)
     private String description;
 
     @Column(name = "start_date", nullable = false)
@@ -39,13 +39,13 @@ public class ArtistGallery {
     private double price;
 
     @ManyToMany
-    @JoinTable(name = "작가전시회_작가",
+    @JoinTable(name = "artistGallery_artist",
             joinColumns = @JoinColumn(name = "artistGallery_id"),
             inverseJoinColumns = @JoinColumn(name = "artist_id"))
     private List<Artist> artistList = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "작가전시회_작품",
+    @JoinTable(name = "artistGallery_art",
             joinColumns = @JoinColumn(name = "artistGallery_id"),
             inverseJoinColumns = @JoinColumn(name = "art_id"))
     private List<Art> artList = new ArrayList<>();

@@ -11,14 +11,14 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="공지사항")
+@Table(name="notice")
 public class Notice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="title")
+    @Column(name="title",nullable = false)
     private String title;
 
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")

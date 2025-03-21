@@ -11,23 +11,23 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="작품")
+@Table(name="art")
 public class Art {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="title")
+    @Column(name="title",nullable = false)
     private String title;
 
-    @Column(name="img_url")
+    @Column(name="img_url",nullable = false)
     private String imgUrl;
 
-    @Column(name = "description")
+    @Column(name = "description",nullable = false)
     private String description;
 
-    @Column(name="completion_date")
+    @Column(name="completion_date",nullable = false)
     private LocalDate completionDate;
 
     @ManyToOne

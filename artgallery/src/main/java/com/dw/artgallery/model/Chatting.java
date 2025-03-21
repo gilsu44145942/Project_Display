@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @Entity
-@Table(name="채팅")
+@Table(name="chatting")
 public class Chatting {
 
     @Id
@@ -22,13 +22,13 @@ public class Chatting {
     @JoinColumn(name="user_name")
     private User user;
 
-    @Column(name="text")
+    @Column(name="text",nullable = false)
     private String text;
 
     @Column(name="img")
     private String img;
 
-    @Column(name="date")
+    @Column(name="date",nullable = false)
     private LocalDateTime data;
 
 }

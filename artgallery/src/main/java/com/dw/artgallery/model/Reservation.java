@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="전시예약")
+@Table(name = "reservation")
 public class Reservation {
 
     @Id
@@ -23,14 +25,15 @@ public class Reservation {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "userGallery_id")
-    private UserGallery userGallery;
+    @JoinColumn(name = "artistGallery_id")
+    private ArtistGallery artistGallery;
 
-    @Column(name = "reservation_date")
+    @Column(name = "reservation_date",nullable = false)
     private LocalDate reservationDate;
 
-    @OneToOne(mappedBy = "reservation")
-    private Ticket ticket;
+    @OneToMany
+    @JoinColumn(name = "reservation")
+    private List<Ticket> ticketList = new ArrayList<>();
 
 }
 

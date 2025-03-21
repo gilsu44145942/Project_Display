@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="굿즈구매내역")
+@Table(name="purchase")
 public class Purchase {
 
     @Id
@@ -26,7 +26,7 @@ public class Purchase {
     @JoinColumn(name="user_name")
     private User user;
 
-    @Column(name="purchase_date")
+    @Column(name="purchase_date",nullable = false)
     private LocalDate purchaseDate;
 
 }

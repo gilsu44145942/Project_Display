@@ -12,14 +12,14 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name="아티스트")
+@Table(name="artist")
 public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name",nullable = false)
     private String name;
 
     @Column(name = "profile_img")
@@ -30,7 +30,6 @@ public class Artist {
 
     @OneToMany(mappedBy = "artist")
     private List<Art> artList = new ArrayList<>();
-
 
     @ManyToMany(mappedBy = "artistList")
     private List<ArtistGallery> artistGalleryList = new ArrayList<>();

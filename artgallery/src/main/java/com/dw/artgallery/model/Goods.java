@@ -9,26 +9,26 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name="굿즈상품")
+@Table(name="goods")
 public class Goods {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name")
+    @Column(name="name",nullable = false)
     private String name;
 
-    @Column(name="img_url")
+    @Column(name="img_url",nullable = false)
     private String imgUrl;
 
-    @Column(name = "description")
+    @Column(name = "description",nullable = false)
     private String description;
 
-    @Column(name="price")
+    @Column(name="price",nullable = false)
     private double price;
 
-    @Column(name="stock")
+    @Column(name="stock",nullable = false)
     private int stock;
 
 

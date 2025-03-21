@@ -11,17 +11,17 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="수상경력")
+@Table(name="biography")
 public class Biography {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "award")
+    @Column(name = "award",nullable = false)
     private String award;
 
-    @Column(name = "year") //수상연도
+    @Column(name = "year",nullable = false) //수상연도
     private LocalDate year;
 
     @ManyToOne
