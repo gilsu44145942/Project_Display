@@ -28,14 +28,11 @@ public class Community {
     @Column(name = "likes")
     private Long likes;
 
-
     @ManyToMany
     @JoinTable(name = "커뮤니티_드로잉",
             joinColumns = @JoinColumn(name = "community_id"),
             inverseJoinColumns = @JoinColumn(name = "drawing_id"))
     private List<Drawing> drawingList = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "comment")
-    private List<Comment> commentList = new ArrayList<>();
+
 }

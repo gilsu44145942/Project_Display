@@ -25,9 +25,6 @@ public class Artist {
     @Column(name = "profile_img")
     private String profile_img;
 
-    @OneToMany
-    @JoinColumn(name = "artist")
-    private List<Biography> biographyList = new ArrayList<>();
 
     @OneToMany(mappedBy = "artist")
     private List<Art> artList = new ArrayList<>();

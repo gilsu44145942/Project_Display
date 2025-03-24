@@ -18,6 +18,8 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="count")
+    private String count;
 
     @ManyToOne
     @JoinColumn(name = "artistGallery_id")

@@ -44,7 +44,5 @@ public class UserGallery {
             inverseJoinColumns = @JoinColumn(name = "user_name"))
     private List<User> userList = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "drawing_id")
-    private List<Drawing> drawingList = new ArrayList<>();
+
 }

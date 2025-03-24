@@ -33,6 +33,9 @@ public class Comment {
     @JoinColumn(name="user_name")
     private User userName;
 
+    @ManyToOne
+    @JoinColumn(name="community_id")
+    private Community community;
 
 }
 

@@ -34,4 +34,8 @@ public class Drawing {
 
     @ManyToMany(mappedBy = "drawingList")
     private List<Community> communityList = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name="usergallery_id")
+    private UserGallery userGallery;
 }
