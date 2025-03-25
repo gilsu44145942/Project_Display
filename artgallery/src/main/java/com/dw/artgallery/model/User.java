@@ -34,6 +34,9 @@ public class User {
     @Column(name="birthday", nullable = false)
     private LocalDate birthday;
 
+    @Column(name = "address")
+    private String address;
+
     @Column(name="point")
     private double point;
 
