@@ -32,6 +32,9 @@ public class Drawing {
     @Column(name="completion_date")
     private LocalDate completionDate;
 
+    @Column(name = "is_complete")
+    private boolean isComplete;
+
     @ManyToMany(mappedBy = "drawingList")
     private List<Community> communityList = new ArrayList<>();
 
