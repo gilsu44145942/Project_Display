@@ -3,6 +3,8 @@ package com.dw.artgallery.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -20,7 +22,7 @@ public class Goods {
     private String name;
 
     @Column(name="img_url",nullable = false)
-    private String imgUrl;
+    private List<String> imgUrlList;
 
     @Column(name = "description",nullable = false)
     private String description;
