@@ -26,8 +26,7 @@ public class GoodsCart {
     @OneToOne
     @JoinColumn(name="goods_id")
     private Goods goods;
-
-
+    
     @OneToOne
     @JoinColumn(name="user_name")
     private User user;

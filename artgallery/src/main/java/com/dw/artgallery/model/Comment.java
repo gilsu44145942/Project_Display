@@ -23,10 +23,8 @@ public class Comment {
     private String text;
 
     @Column(name="creation_date",nullable = false)
-    private LocalDate creationDate;
+    private LocalDateTime creationDate;
 
-    @Column(name="modify_date",nullable = false)
-    private LocalDateTime modifyDate;
 
 
     @ManyToOne

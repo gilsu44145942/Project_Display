@@ -3,6 +3,8 @@ package com.dw.artgallery.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,14 +21,17 @@ public class Community {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
-    private String title;
-
     @Column(name = "text")
     private String text;
 
     @Column(name = "likes")
     private Long likes;
+
+    @Column(name = "upload_date")
+    private LocalDateTime uploadDate;
+
+    @Column(name="modify_date",nullable = false)
+    private LocalDateTime modifyDate;
 
     @ManyToMany
     @JoinTable(name = "커뮤니티_드로잉",

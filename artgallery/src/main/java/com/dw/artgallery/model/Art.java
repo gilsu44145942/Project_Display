@@ -31,6 +31,9 @@ public class Art {
     @Column(name="completion_date",nullable = false)
     private LocalDate completionDate;
 
+    @Column(name = "upload_date", nullable = false)
+    private LocalDate uploadDate;
+
     @ManyToOne
     @JoinColumn(name="artist_id")
     private Artist artist;
