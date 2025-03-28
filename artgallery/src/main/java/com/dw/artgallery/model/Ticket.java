@@ -21,6 +21,9 @@ public class Ticket {
     @Column(name="count")
     private String count;
 
+    @Column(name = "select_date")
+    private LocalDate selectDate;
+
     @ManyToOne
     @JoinColumn(name = "artistGallery_id")
     private ArtistGallery artistGallery;
