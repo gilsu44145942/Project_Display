@@ -37,6 +37,9 @@ public class User {
     @Column(name = "address")
     private String address;
 
+    @Column(name="enrolment_date")
+    private LocalDate EnrolmentDate;
+
     @Column(name="point")
     private double point;
 
