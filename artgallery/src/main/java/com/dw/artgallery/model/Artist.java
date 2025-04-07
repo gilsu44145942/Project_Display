@@ -1,5 +1,6 @@
 package com.dw.artgallery.model;
 
+import com.dw.artgallery.DTO.ArtistDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
