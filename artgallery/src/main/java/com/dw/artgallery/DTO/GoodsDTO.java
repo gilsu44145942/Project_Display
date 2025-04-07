@@ -1,4 +1,4 @@
-package com.dw.artgallery.DTO;
+package com.dw.artgallery.dto;
 
 public class GoodsDTO {
 }

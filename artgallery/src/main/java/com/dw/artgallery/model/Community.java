@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name = "커뮤니티")
+@Table(name = "community")
 public class Community {
 
     @Id
@@ -34,7 +34,7 @@ public class Community {
     private LocalDateTime modifyDate;
 
     @ManyToMany
-    @JoinTable(name = "커뮤니티_드로잉",
+    @JoinTable(name = "community_drawing",
             joinColumns = @JoinColumn(name = "community_id"),
             inverseJoinColumns = @JoinColumn(name = "drawing_id"))
     private List<Drawing> drawingList = new ArrayList<>();

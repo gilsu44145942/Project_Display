@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="리뷰")
+@Table(name="review")
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class Review {
     private String text;
 
     @ManyToOne
-    @JoinColumn(name = "userName")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne

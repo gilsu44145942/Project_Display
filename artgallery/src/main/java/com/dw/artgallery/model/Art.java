@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="작품")
+@Table(name="art")
 public class Art {
 
 

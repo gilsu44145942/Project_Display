@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-@Table(name="사용자")
+@Table(name="user")
 public class User {
 
     @Id

@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name="굿즈상품")
+@Table(name="goods")
 public class Goods {
 
     @Id

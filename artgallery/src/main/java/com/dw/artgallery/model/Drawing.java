@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name="드로잉")
+@Table(name="drawing")
 public class Drawing {
 
     @Id

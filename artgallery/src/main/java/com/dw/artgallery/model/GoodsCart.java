@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name="굿즈장바구니")
+@Table(name="goods_cart")
 public class GoodsCart {
 
 
@@ -28,7 +28,7 @@ public class GoodsCart {
     private Goods goods;
     
     @OneToOne
-    @JoinColumn(name="user_name")
+    @JoinColumn(name="user_id")
     private User user;
 
 

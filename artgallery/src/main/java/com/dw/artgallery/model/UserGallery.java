@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name="사용자전시회")
+@Table(name="user_gallery")
 public class UserGallery {
 
     @Id
@@ -41,7 +41,7 @@ public class UserGallery {
     @ManyToMany
     @JoinTable(name = "userGallery_user",
             joinColumns = @JoinColumn(name = "userGallery_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_name"))
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> userList = new ArrayList<>();
 
 
