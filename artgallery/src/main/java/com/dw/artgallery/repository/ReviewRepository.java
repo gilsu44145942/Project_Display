@@ -1,4 +1,7 @@
 package com.dw.artgallery.repository;
 
-public interface ReviewRepository {
+import com.dw.artgallery.model.Review;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReviewRepository extends JpaRepository<Review,Long> {
 }

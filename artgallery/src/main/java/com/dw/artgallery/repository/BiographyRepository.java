@@ -1,4 +1,8 @@
 package com.dw.artgallery.repository;
 
-public interface BiographyRepository {
+import com.dw.artgallery.model.Biography;
+import org.hibernate.boot.jaxb.mapping.JaxbPrePersist;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BiographyRepository extends JpaRepository<Biography,Long> {
 }

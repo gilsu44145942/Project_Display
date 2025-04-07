@@ -1,4 +1,7 @@
 package com.dw.artgallery.repository;
 
-public interface TicketRepository {
+import com.dw.artgallery.model.Ticket;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TicketRepository extends JpaRepository<Ticket,Long> {
 }

@@ -1,4 +1,7 @@
 package com.dw.artgallery.repository;
 
-public interface GoodsRepository {
+import com.dw.artgallery.model.GoodsCart;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface GoodsRepository extends JpaRepository<GoodsCart,Long> {
 }
