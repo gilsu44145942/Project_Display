@@ -1,5 +1,6 @@
 package com.dw.artgallery.model;
 
+import com.dw.artgallery.DTO.GoodsDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,5 +37,14 @@ public class Goods {
     @Column(name="stock",nullable = false)
     private int stock;
 
-
+    public static GoodsDTO toDTO(Goods goods){
+        return new GoodsDTO(
+                goods.getId(),
+                goods.getName(),
+                goods.getImgUrlList(),
+                goods.getDescription(),
+                goods.getPrice(),
+                goods.getStock()
+        );
+    }
 }

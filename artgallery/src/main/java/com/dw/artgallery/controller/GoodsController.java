@@ -17,7 +17,7 @@ public class GoodsController {
     @Autowired
     GoodsService goodsService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<GoodsDTO>> getAllGoods(){
         return new ResponseEntity<>(goodsService.getAllGoods(), HttpStatus.OK);
     }
@@ -40,6 +40,22 @@ public class GoodsController {
     @GetMapping("/stock/{id}")
     public ResponseEntity<GoodsDTO> getGoodsStockById(@PathVariable Long id) {
         return new ResponseEntity<>(goodsService.getGoodsStockById(id), HttpStatus.OK);
+    }
+
+
+    @PostMapping
+    public ResponseEntity<GoodsDTO> addGoods(@RequestBody GoodsDTO goodsDTO){
+        return new ResponseEntity<>(goodsService.saveGoods(goodsDTO), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<GoodsDTO> updateGoods(@PathVariable Long id, @RequestBody GoodsDTO goodsDTO){
+        return new ResponseEntity<>(goodsService.updateGoods(id, goodsDTO), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<GoodsDTO> deleteGoods(@PathVariable Long id) {
+        return new ResponseEntity<>(goodsService.deleteGoods(id), HttpStatus.OK);
     }
 }
 
