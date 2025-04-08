@@ -93,4 +93,6 @@ public class UserController {
     public ResponseEntity<List<UserDTO>> getTopUsersByPoints() {
         return ResponseEntity.ok(userService.getTopUsersByPoints());
     }
+
+    //
 }

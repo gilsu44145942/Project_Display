@@ -112,7 +112,7 @@ public class UserService {
     // 포인트가 많은 유저순으로 조회 (관리자만 가능)
     public List<UserDTO> getTopUsersByPoints() {
         List<User> users = userRepository.findAllByOrderByPointDesc();
-        return users.stream().map(User::toDTO).toList();
+        return users.stream().map(User::toDTO).toList();  
     }
 
 
