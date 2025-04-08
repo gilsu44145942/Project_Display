@@ -22,7 +22,9 @@ public class Goods {
     @Column(name="name",nullable = false)
     private String name;
 
-    @Column(name="img_url",nullable = false)
+    @ElementCollection
+    @CollectionTable(name = "goods_images", joinColumns = @JoinColumn(name = "goods_id"))
+    @Column(name = "img_url")
     private List<String> imgUrlList;
 
     @Column(name = "description",nullable = false)
