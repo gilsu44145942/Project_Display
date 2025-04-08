@@ -39,6 +39,6 @@ public class Drawing {
     private List<Community> communityList = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name="user_gallery_id")
+    @JoinColumn(name = "user_gallery_id")
     private UserGallery userGallery;
 }

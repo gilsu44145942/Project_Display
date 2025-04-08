@@ -1,5 +1,7 @@
 package com.dw.artgallery.model;
 
+import com.dw.artgallery.DTO.UserGalleryDTO;
+import com.dw.artgallery.DTO.UserGalleryDetailDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -44,5 +46,40 @@ public class UserGallery {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> userList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "userGallery")
+    private List<Drawing> drawingList = new ArrayList<>();
+
+
+    public UserGalleryDetailDTO toDto(){
+        UserGalleryDetailDTO userGalleryDetailDTO =  new UserGalleryDetailDTO();
+        userGalleryDetailDTO.setTitle(this.title);
+        userGalleryDetailDTO.setPosterUrl(this.posterUrl);
+        userGalleryDetailDTO.setDescription(this.description);
+        userGalleryDetailDTO.setStartDate(this.startDate);
+        userGalleryDetailDTO.setEndDate(this.endDate);
+        userGalleryDetailDTO.setPrice(this.price == 0 ? "무료" : "책정 없음");
+        List<String> users = new ArrayList<>();
+        for (User data : userList) {
+            users.add(data.getNickName());
+        }
+        userGalleryDetailDTO.setUserList(users);
+        List<String> drawings = new ArrayList<>();
+        for (Drawing data : drawingList) {
+            drawings.add(data.getImgUrl());
+        }
+        userGalleryDetailDTO.setDrawingImg(drawings);
+        return userGalleryDetailDTO;
+    }
+
+    public UserGalleryDTO ToDTO(){
+        UserGalleryDTO userGalleryDTO = new UserGalleryDTO();
+        userGalleryDTO.setTitle(this.title);
+        userGalleryDTO.setDescription(this.description);
+        userGalleryDTO.setPosterUrl(this.posterUrl);
+        userGalleryDTO.setStartDate(this.startDate);
+        userGalleryDTO.setEndDate(this.endDate);
+        return userGalleryDTO;
+
+    }
 
 }

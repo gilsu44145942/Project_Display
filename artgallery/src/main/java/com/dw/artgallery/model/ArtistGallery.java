@@ -70,6 +70,7 @@ public class ArtistGallery {
         artistGalleryDetailDTO.setDescription(this.description);
         artistGalleryDetailDTO.setStartDate(this.startDate);
         artistGalleryDetailDTO.setEndDate(this.endDate);
+        artistGalleryDetailDTO.setPrice(this.price);
         List<String> artistList1 = new ArrayList<>();
         for (Artist data : artistList) {
             artistList1.add(data.getName());
