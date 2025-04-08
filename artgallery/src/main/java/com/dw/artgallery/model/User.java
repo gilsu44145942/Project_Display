@@ -43,7 +43,7 @@ public class User {
     private LocalDate enrolmentDate = LocalDate.now(); // 기본값 설정
 
     @Column(name = "point")
-    private double point = 0.0; // 기본 포인트 설정
+    private double point ; // 기본 포인트 설정
 
     @Column(name="gender")
     @Enumerated(EnumType.STRING)

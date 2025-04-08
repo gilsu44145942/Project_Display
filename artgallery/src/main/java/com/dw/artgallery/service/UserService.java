@@ -7,9 +7,13 @@ import com.dw.artgallery.repository.AuthorityRepository;
 import com.dw.artgallery.repository.UserRepository;
 import com.dw.exception.InvalidRequestException;
 import com.dw.exception.ResourceNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
 
@@ -60,5 +64,20 @@ public class UserService {
 
         // 5. 저장 후 DTO 변환
         return userRepository.save(user).toDTO();
+    }
+
+    // 로그인
+    public boolean validateUser(String userId, String password) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(()->new InvalidRequestException("Invalid Username"));
+        return passwordEncoder.matches(password,user.getPassword());
+    }
+    // 로그아웃
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+        request.getSession().invalidate(); // 세션 종료
+        return new ResponseEntity<>(
+                "You have been logged out.",
+                HttpStatus.OK);
     }
 }

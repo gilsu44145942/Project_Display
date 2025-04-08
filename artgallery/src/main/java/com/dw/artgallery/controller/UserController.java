@@ -2,6 +2,9 @@ package com.dw.artgallery.controller;
 
 import com.dw.artgallery.DTO.UserDTO;
 import com.dw.artgallery.service.UserService;
+import com.dw.exception.UnauthorizedUserException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,4 +26,7 @@ public class UserController {
     public ResponseEntity<UserDTO> registerUser(@RequestBody UserDTO userDTO) {
         return new ResponseEntity<>(userService.registerUser(userDTO), HttpStatus.CREATED);
     }
+
+
+
 }
