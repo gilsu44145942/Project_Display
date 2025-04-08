@@ -29,5 +29,24 @@ public class ArtistGalleryController {
         return new ResponseEntity<>(artistGalleryService.getIdArtistGallery(id), HttpStatus.OK);
     }
 
+    @GetMapping("/title/{title}")
+    public ResponseEntity<List<ArtistGalleryDTO>> getTitleArtistGallery (@PathVariable String title) {
+        return new ResponseEntity<>(artistGalleryService.getTitleArtistGallery(title),HttpStatus.OK);
+    }
+
+    @GetMapping("/now")
+    public ResponseEntity<List<ArtistGalleryDTO>> getNowArtistGallery () {
+        return new ResponseEntity<>(artistGalleryService.getNowArtistGallery(), HttpStatus.OK);
+    }
+
+    @GetMapping("/past")
+    public ResponseEntity<List<ArtistGalleryDTO>> getPastArtistGallery () {
+        return new ResponseEntity<>(artistGalleryService.getPastArtistGallery(), HttpStatus.OK);
+    }
+
+    @GetMapping("/expected")
+    public ResponseEntity<List<ArtistGalleryDTO>> getExpectedArtistGallery () {
+        return new ResponseEntity<>(artistGalleryService.getExpectedArtistGallery(), HttpStatus.OK);
+    }
 
 }
