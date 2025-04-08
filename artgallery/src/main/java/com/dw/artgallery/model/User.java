@@ -1,5 +1,6 @@
 package com.dw.artgallery.model;
 
+import com.dw.artgallery.DTO.UserDTO;
 import com.dw.artgallery.enums.Gender;
 import jakarta.persistence.*;
 import lombok.*;
@@ -51,6 +52,27 @@ public class User {
     @JoinColumn(name = "user_authority")
     private Authority authority;
 
+    public UserDTO toDTO() {
+        return new UserDTO(
+                this.userId,
+                null,
+                this.realName,
+                this.email,
+                this.birthday,
+                this.address,
+                this.EnrolmentDate,
+                this.point,
+                this.gender
+
+        );
+
+
+    }
+
 
 
 }
+
+
+
+
