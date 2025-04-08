@@ -229,21 +229,21 @@ INSERT INTO goods (id, name, description, price, stock) VALUES
 (7, '감성 북마크 세트', '작품의 명대사와 이미지가 함께 있는 북마크 3종 세트입니다.', 4000, 60),
 (8, '미니 캔버스 액자', '고양이 테마 작품을 작은 캔버스로 제작한 인테리어 소품입니다.', 13000, 35);
 
-INSERT INTO goods_images (goods_id, img_url) VALUES (1, 'https://img.example.com/goods1_1.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (1, 'https://img.example.com/goods1_2.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (2, 'https://img.example.com/goods2_1.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (3, 'https://img.example.com/goods3_1.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (3, 'https://img.example.com/goods3_2.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (3, 'https://img.example.com/goods3_3.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (4, 'https://img.example.com/goods4_1.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (5, 'https://img.example.com/goods5_1.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (5, 'https://img.example.com/goods5_2.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (6, 'https://img.example.com/goods6_1.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (7, 'https://img.example.com/goods7_1.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (7, 'https://img.example.com/goods7_2.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (8, 'https://img.example.com/goods8_1.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (8, 'https://img.example.com/goods8_2.jpg');
-INSERT INTO goods_images (goods_id, img_url) VALUES (8, 'https://img.example.com/goods8_3.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (1, 'https://img.example.com/goods1_1.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (1, 'https://img.example.com/goods1_2.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (2, 'https://img.example.com/goods2_1.jpg');   
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (3, 'https://img.example.com/goods3_1.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (3, 'https://img.example.com/goods3_2.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (3, 'https://img.example.com/goods3_3.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (4, 'https://img.example.com/goods4_1.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (5, 'https://img.example.com/goods5_1.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (5, 'https://img.example.com/goods5_2.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (6, 'https://img.example.com/goods6_1.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (7, 'https://img.example.com/goods7_1.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (7, 'https://img.example.com/goods7_2.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (8, 'https://img.example.com/goods8_1.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (8, 'https://img.example.com/goods8_2.jpg');
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (8, 'https://img.example.com/goods8_3.jpg');
 
 INSERT INTO goods_cart ( amount, sum, goods_id,user_id)
 VALUES
