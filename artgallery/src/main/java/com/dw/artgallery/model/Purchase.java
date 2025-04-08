@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,16 +21,18 @@ public class Purchase {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name="goods_sum")
+    @JoinColumn(name="goods_cart_id")
     private GoodsCart goodsCart;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="goods_id")
     private Goods goods;
 
-    @OneToOne
-    @JoinColumn(name="user_id")
-    private User user;
+    @ManyToMany
+    @JoinTable(name = "purchase_user",
+            joinColumns = @JoinColumn(name = "purchase_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> User = new ArrayList<>();
 
     @Column(name="purchase_date",nullable = false)
     private LocalDate purchaseDate;

@@ -1,7 +1,7 @@
 INSERT INTO authority (authority_name) VALUES ('ADMIN');
 INSERT INTO authority (authority_name) VALUES ('USER');
 
-INSERT INTO user ( user_id, password, nickname, real_name, email, birthday, address, enrolment_date, point,gender, user_authority)
+INSERT INTO user ( user_id, password, nickname, real_name, email, birthday, address, enrolment_date, point,gender,user_authority)
 VALUES
 ('admin01', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '관리자', '관리자', 'admin@gallery.com', '1985-05-05', '서울특별시 강남구', '2023-09-20', 9999, 'MALE', 'ADMIN'),
 ('artlover01', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '몽환토끼', '김은지', 'eunji.kim@example.com', '1992-06-15', '서울특별시 마포구', '2023-11-02', 1200, 'FEMALE', 'USER'),
@@ -230,16 +230,16 @@ VALUES
 ('감성 북마크 세트', 'IMG_URL', '작품의 명대사와 이미지가 함께 있는 북마크 3종 세트입니다.', 4000, 60),
 ('미니 캔버스 액자', 'IMG_URL', '고양이 테마 작품을 작은 캔버스로 제작한 인테리어 소품입니다.', 13000, 35);
 
-INSERT INTO goods_cart ( amount, sum, goods_id, user_id)
+INSERT INTO goods_cart ( amount, sum, goods_id)
 VALUES
-(2, 24000, 1, 'modernline'),
-(1, 8000, 2, 'drawmaster'),
-(3, 18000, 3, 'catncanvas'),
-(1, 10000, 4, 'modernline'),
-(4, 20000, 5, 'drawmaster'),
-(2, 30000, 6, 'catncanvas'),
-(1, 4000, 7, 'catncanvas'),
-(3, 39000, 8, 'drawmaster');
+(2, 24000, 1),
+(1, 8000, 2),
+(3, 18000, 3 ),
+(1, 10000, 4),
+(4, 20000, 5 ),
+(2, 30000, 6 ),
+(1, 4000, 7 ),
+(3, 39000, 8 );
 
 INSERT INTO notice ( title, content, created_date)
 VALUES
@@ -252,16 +252,16 @@ VALUES
 ('이벤트 당첨자 발표', '3월에 진행된 "나의 감성 드로잉" 이벤트 당첨자를 발표합니다. 자세한 사항은 이벤트 게시판을 확인해주세요.', '2025-03-31'),
 ('봄맞이 굿즈 할인 이벤트', '4월 한 달간 일부 굿즈 상품이 최대 30% 할인됩니다. 놓치지 마세요!', '2025-04-04');
 
-INSERT INTO purchase ( goods_sum, goods_id, user_id, purchase_date)
+INSERT INTO purchase ( goods_cart_id, goods_id, purchase_date)
 VALUES
-(24000, 1, 'galleryqueen', '2025-03-21'),
-(8000, 2, 'galleryqueen', '2025-02-11'),
-(18000, 3, 'galleryqueen', '2025-04-01'),
-(10000, 4, 'yoonverse', '2025-01-30'),
-(20000, 5, 'catncanvas', '2025-03-10'),
-(30000, 6, 'artlover01', '2025-03-18'),
-(4000, 7, 'yoonverse', '2025-02-27'),
-(39000, 8, 'catncanvas', '2025-04-03');
+(1, 1, '2025-03-21'),
+(2, 2, '2025-02-11'),
+(3, 3, '2025-04-01'),
+(4, 4, '2025-01-30'),
+(5, 5, '2025-03-10'),
+(6, 6, '2025-03-18'),
+(7, 7, '2025-02-27'),
+(8, 8, '2025-04-03');
 
 INSERT INTO review ( text, user_id, goods_id, created_at)
 VALUES
@@ -327,6 +327,27 @@ VALUES
 (4, 12), (4, 13), (4, 14), (4, 15),
 (5, 3), (5, 7), (5, 8);
 
+INSERT INTO  goods_cart_user(goods_cart_id, user_id)
+VALUES
+(1,'catncanvas'),
+(2,'drawmaster'),
+(3,'drawmaster'),
+(4,'catncanvas'),
+(5,'artlover01'),
+(6,'artlover01'),
+(7,'catncanvas'),
+(8,'artlover01');
 
 
---굿즈카트에 유저아이디와 굿즈아이디가 둘다 유니크한 값이기 때문에 오류
+INSERT INTO purchase_user (purchase_id, user_id)
+VALUES
+(1,  'galleryqueen' ),
+(2,  'galleryqueen' ),
+(3,  'galleryqueen' ),
+(4,  'yoonverse' ),
+(5,  'catncanvas' ),
+(6,  'artlover01' ),
+(7,  'yoonverse' ),
+(8,  'catncanvas' );
+
+
