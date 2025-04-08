@@ -4,6 +4,8 @@ import com.dw.artgallery.jwt.JwtFilter;
 import com.dw.artgallery.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,41 +28,35 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .csrf(AbstractHttpConfigurer::disable) // 🔥 CSRF 비활성화
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/user/register").permitAll()  // 🔥 회원가입 API 먼저 허용!
-                        .requestMatchers("/error").permitAll()  // 🔥 에러 페이지 허용!
+                        .requestMatchers("/api/user/register", "/api/user/login").permitAll() // ✅ 로그인 & 회원가입 허용
+                        .requestMatchers("/error").permitAll() // ✅ 에러 페이지 허용
                         .requestMatchers(
                                 new AntPathRequestMatcher("/*.html"),
-                                new AntPathRequestMatcher("/api/authenticate"),
-                                new AntPathRequestMatcher("/api/products/**"),
-                                new AntPathRequestMatcher("/api/game/**"),
-                                new AntPathRequestMatcher("/css/**"),
-                                new AntPathRequestMatcher("/ws/**"),
-                                new AntPathRequestMatcher("/js/**"),
-                                new AntPathRequestMatcher("/img/**"),
-                                new AntPathRequestMatcher("/mp4/**"),
+                                new AntPathRequestMatcher("/api/**"),
+
                                 new AntPathRequestMatcher("/swagger-ui/**"),
                                 new AntPathRequestMatcher("/v3/api-docs/**")
                         ).permitAll()
                         .requestMatchers("/uploads/**").denyAll()
-                        .anyRequest().authenticated()  // ✅ 마지막에 인증 요구!
+
                 )
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .csrf(AbstractHttpConfigurer::disable)
-                .addFilterBefore(
-                        new JwtFilter(tokenProvider),
-                        UsernamePasswordAuthenticationFilter.class
-                )
+                // 🔥 JWT 필터를 UsernamePasswordAuthenticationFilter 뒤에 추가
+                .addFilterAfter(new JwtFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
 }
