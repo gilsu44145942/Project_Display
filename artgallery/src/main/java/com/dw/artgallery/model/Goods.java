@@ -24,14 +24,10 @@ public class Goods {
 
     @ElementCollection
     @CollectionTable(name = "goods_images", joinColumns = @JoinColumn(name = "goods_id"))
-    @Column(name = "img_url")
     private List<String> imgUrlList;
 
     @Column(name = "description",nullable = false)
     private String description;
-
-//    @Column(name = "option")
-//    private List<String> option;
 
     @Column(name="price",nullable = false)
     private double price;

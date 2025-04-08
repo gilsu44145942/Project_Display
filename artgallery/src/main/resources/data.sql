@@ -219,16 +219,31 @@ VALUES
 ('IMG_URL', '유년의 숲', '어릴 적 뛰어놀던 숲속의 기억을 몽환적으로 표현했습니다.', '2025-04-15', false, 4),
 ('IMG_URL', '소꿉놀이 풍경', '소꿉놀이하며 만들어낸 상상의 풍경들을 담았습니다.', '2025-04-11', true, 4);
 
-INSERT INTO goods ( name, img_url, description, price, stock)
-VALUES
-('아트 포스터 - 고양이의 오후', 'IMG_URL', '전시회 "나의 고양이, 나의 뮤즈"의 대표작을 담은 감성적인 포스터입니다.', 12000, 30),
-('드로잉 노트 - 무중력 공간', 'IMG_URL', '몽환적인 우주 드로잉이 커버에 인쇄된 고급 드로잉 노트입니다.', 8000, 50),
-('감성 엽서 세트 (5종)', 'IMG_URL', '다양한 작품을 소형 엽서로 제작해 일상 속 감성을 전달합니다.', 6000, 100),
-('전시회 공식 머그컵', 'IMG_URL', '작품 "보라빛 꿈"의 테마가 담긴 디자인 머그컵. 차 한 잔의 여유와 함께.', 10000, 40),
-('스티커 팩 - 유년의 숲', 'IMG_URL', '아이의 상상력이 담긴 드로잉을 귀엽게 담은 스티커 모음입니다.', 5000, 80),
-('아트 프린팅 에코백', 'IMG_URL', '창밖의 풍경들을 담은 미니멀한 아트 프린팅 에코백입니다.', 15000, 25),
-('감성 북마크 세트', 'IMG_URL', '작품의 명대사와 이미지가 함께 있는 북마크 3종 세트입니다.', 4000, 60),
-('미니 캔버스 액자', 'IMG_URL', '고양이 테마 작품을 작은 캔버스로 제작한 인테리어 소품입니다.', 13000, 35);
+INSERT INTO goods (id, name, description, price, stock) VALUES
+(1, '아트 포스터 - 고양이의 오후', '전시회 "나의 고양이, 나의 뮤즈"의 대표작을 담은 감성적인 포스터입니다.', 12000, 30),
+(2, '드로잉 노트 - 무중력 공간', '몽환적인 우주 드로잉이 커버에 인쇄된 고급 드로잉 노트입니다.', 8000, 50),
+(3, '감성 엽서 세트 (5종)', '다양한 작품을 소형 엽서로 제작해 일상 속 감성을 전달합니다.', 6000, 100),
+(4, '전시회 공식 머그컵', '작품 "보라빛 꿈"의 테마가 담긴 디자인 머그컵. 차 한 잔의 여유와 함께.', 10000, 40),
+(5, '스티커 팩 - 유년의 숲', '아이의 상상력이 담긴 드로잉을 귀엽게 담은 스티커 모음입니다.', 5000, 80),
+(6, '아트 프린팅 에코백', '창밖의 풍경들을 담은 미니멀한 아트 프린팅 에코백입니다.', 15000, 25),
+(7, '감성 북마크 세트', '작품의 명대사와 이미지가 함께 있는 북마크 3종 세트입니다.', 4000, 60),
+(8, '미니 캔버스 액자', '고양이 테마 작품을 작은 캔버스로 제작한 인테리어 소품입니다.', 13000, 35);
+
+INSERT INTO goods_images (goods_id, img_url) VALUES (1, 'https://img.example.com/goods1_1.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (1, 'https://img.example.com/goods1_2.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (2, 'https://img.example.com/goods2_1.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (3, 'https://img.example.com/goods3_1.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (3, 'https://img.example.com/goods3_2.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (3, 'https://img.example.com/goods3_3.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (4, 'https://img.example.com/goods4_1.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (5, 'https://img.example.com/goods5_1.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (5, 'https://img.example.com/goods5_2.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (6, 'https://img.example.com/goods6_1.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (7, 'https://img.example.com/goods7_1.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (7, 'https://img.example.com/goods7_2.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (8, 'https://img.example.com/goods8_1.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (8, 'https://img.example.com/goods8_2.jpg');
+INSERT INTO goods_images (goods_id, img_url) VALUES (8, 'https://img.example.com/goods8_3.jpg');
 
 INSERT INTO goods_cart ( amount, sum, goods_id,user_id)
 VALUES
