@@ -3,13 +3,8 @@ package com.dw.artgallery.service;
 import com.dw.artgallery.DTO.GoodsDTO;
 import com.dw.artgallery.enums.SortOrder;
 import com.dw.artgallery.model.Goods;
-import com.dw.artgallery.model.User;
 import com.dw.artgallery.repository.GoodsRepository;
-import com.dw.artgallery.repository.UserRepository;
-import com.dw.exception.PermissionDeniedException;
 import com.dw.exception.ResourceNotFoundException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +23,7 @@ public class GoodsService {
 
         return goodsList.stream()
                 .map(GoodsDTO::fromEntity)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public GoodsDTO getGoodsById(Long id){
@@ -38,7 +33,7 @@ public class GoodsService {
     }
 
     public List<GoodsDTO> getGoodsByName(String name){
-        return goodsRepository.findByNameLike(name).stream().map(GoodsDTO::fromEntity).toList();
+        return goodsRepository.findByNameLike("%"+name+"%").stream().map(GoodsDTO::fromEntity).toList();
     }
 
     public List<GoodsDTO>getGoodsSortByPrice(SortOrder sortOrder) {
@@ -60,7 +55,7 @@ public class GoodsService {
         return goods.getStock();
     }
 
-    public GoodsDTO addGoods(GoodsDTO goodsDTO, HttpServletRequest request){
+    public GoodsDTO addGoods(GoodsDTO goodsDTO){
 
         Goods goods = new Goods();
         goods.setName(goodsDTO.getName());
@@ -70,7 +65,21 @@ public class GoodsService {
         goods.setStock(goodsDTO.getStock());
 
         Goods saveGoods = goodsRepository.save(goods);
-
         return GoodsDTO.fromEntity(saveGoods);
     }
+
+    public GoodsDTO updateGoods(Long id, GoodsDTO goodsDTO){
+
+        Goods goods = goodsRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("찾으려는 굿즈 상품이 없습니다"));
+
+        goods.setName(goodsDTO.getName());
+        goods.setImgUrlList(goodsDTO.getImgUrlList());
+        goods.setDescription(goodsDTO.getDescription());
+        goods.setPrice(goodsDTO.getPrice());
+        goods.setStock(goodsDTO.getStock());
+
+        Goods updatedGoods = goodsRepository.save(goods);
+        return GoodsDTO.fromEntity(updatedGoods);
+    }
+
 }

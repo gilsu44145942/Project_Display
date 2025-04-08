@@ -1,16 +1,16 @@
-INSERT INTO authority (authority_name) VALUES ('ADMIN');
-INSERT INTO authority (authority_name) VALUES ('USER');
+INSERT INTO authority (authority_name) VALUES ('ROLE_ADMIN');
+INSERT INTO authority (authority_name) VALUES ('ROLE_USER');
 
 INSERT INTO user ( user_id, password, nickname, real_name, email, birthday, address, enrolment_date, point,gender,user_authority)
 VALUES
-('admin01', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '관리자', '관리자', 'admin@gallery.com', '1985-05-05', '서울특별시 강남구', '2023-09-20', 9999, 'MALE', 'ADMIN'),
-('artlover01', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '몽환토끼', '김은지', 'eunji.kim@example.com', '1992-06-15', '서울특별시 마포구', '2023-11-02', 1200, 'FEMALE', 'USER'),
-('drawmaster', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '선과빛', '이재훈', 'jaehoon.lee@example.com', '1987-03-21', '부산광역시 해운대구', '2024-01-10', 980, 'MALE', 'USER'),
-('catncanvas', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '고양이화가', '정다혜', 'dahye.jung@example.com', '1995-09-12', '경기도 성남시', '2023-12-25', 1500, 'FEMALE', 'USER'),
-('dreamybrush', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '몽환붓터치', '최성민', 'seongmin.choi@example.com', '1990-11-03', '인천광역시 미추홀구', '2024-02-02', 430, 'MALE', 'USER'),
-('galleryqueen', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '갤러리여왕', '박지은', 'jieun.park@example.com', '1988-08-08', '대구광역시 수성구', '2023-10-15', 2450, 'FEMALE', 'USER'),
-('modernline', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '현대선', '송민호', 'minho.song@example.com', '1993-02-17', '광주광역시 북구', '2024-03-05', 720, 'MALE', 'USER'),
-('yoonverse', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '윤의세계', '윤슬기', 'seulgi.yoon@example.com', '1997-01-29', '울산광역시 남구', '2023-12-01', 300, 'FEMALE', 'USER');
+('admin01', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '관리자', '관리자', 'admin@gallery.com', '1985-05-05', '서울특별시 강남구', '2023-09-20', 9999, 'MALE', 'ROLE_ADMIN'),
+('artlover01', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '몽환토끼', '김은지', 'eunji.kim@example.com', '1992-06-15', '서울특별시 마포구', '2023-11-02', 1200, 'FEMALE', 'ROLE_USER'),
+('drawmaster', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '선과빛', '이재훈', 'jaehoon.lee@example.com', '1987-03-21', '부산광역시 해운대구', '2024-01-10', 980, 'MALE', 'ROLE_USER'),
+('catncanvas', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '고양이화가', '정다혜', 'dahye.jung@example.com', '1995-09-12', '경기도 성남시', '2023-12-25', 1500, 'FEMALE', 'ROLE_USER'),
+('dreamybrush', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '몽환붓터치', '최성민', 'seongmin.choi@example.com', '1990-11-03', '인천광역시 미추홀구', '2024-02-02', 430, 'MALE', 'ROLE_USER'),
+('galleryqueen', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '갤러리여왕', '박지은', 'jieun.park@example.com', '1988-08-08', '대구광역시 수성구', '2023-10-15', 2450, 'FEMALE', 'ROLE_USER'),
+('modernline', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '현대선', '송민호', 'minho.song@example.com', '1993-02-17', '광주광역시 북구', '2024-03-05', 720, 'MALE', 'ROLE_USER'),
+('yoonverse', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '윤의세계', '윤슬기', 'seulgi.yoon@example.com', '1997-01-29', '울산광역시 남구', '2023-12-01', 300, 'FEMALE', 'ROLE_USER');
 
 
 INSERT INTO artist (id, name, profile_img )
@@ -231,7 +231,7 @@ INSERT INTO goods (id, name, description, price, stock) VALUES
 
 INSERT INTO goods_images (goods_id, img_url_list) VALUES (1, 'https://img.example.com/goods1_1.jpg');
 INSERT INTO goods_images (goods_id, img_url_list) VALUES (1, 'https://img.example.com/goods1_2.jpg');
-INSERT INTO goods_images (goods_id, img_url_list) VALUES (2, 'https://img.example.com/goods2_1.jpg');   
+INSERT INTO goods_images (goods_id, img_url_list) VALUES (2, 'https://img.example.com/goods2_1.jpg');
 INSERT INTO goods_images (goods_id, img_url_list) VALUES (3, 'https://img.example.com/goods3_1.jpg');
 INSERT INTO goods_images (goods_id, img_url_list) VALUES (3, 'https://img.example.com/goods3_2.jpg');
 INSERT INTO goods_images (goods_id, img_url_list) VALUES (3, 'https://img.example.com/goods3_3.jpg');
