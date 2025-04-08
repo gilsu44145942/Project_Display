@@ -39,14 +39,14 @@ public class ArtistGallery {
     private double price;
 
     @ManyToMany
-    @JoinTable(name = "artistGallery_artist",
-            joinColumns = @JoinColumn(name = "artistGallery_id"),
+    @JoinTable(name = "artist_gallery_artist",
+            joinColumns = @JoinColumn(name = "artist_gallery_id"),
             inverseJoinColumns = @JoinColumn(name = "artist_id"))
     private List<Artist> artistList = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "artistGallery_art",
-            joinColumns = @JoinColumn(name = "artistGallery_id"),
+    @JoinTable(name = "artist_gallery_art",
+            joinColumns = @JoinColumn(name = "artist_gallery_id"),
             inverseJoinColumns = @JoinColumn(name = "art_id"))
     private List<Art> artList = new ArrayList<>();
 

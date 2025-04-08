@@ -201,7 +201,7 @@ VALUES
 ('나의 고양이, 나의 뮤즈', 'IMG_URL', 0, '반려묘와의 일상을 예술로 풀어낸 사랑스러운 전시입니다. 고양이가 준 따뜻한 영감을 함께 나눠요.', '2025-05-20', '2025-05-27'),
 ('어린 날의 놀이', 'IMG_URL', 0, '추억 속 놀이와 상상력을 다시 꺼내보는 시간. 장난기 가득한 표현으로 가득 찬 유쾌한 전시입니다.', '2025-04-10', '2025-04-18');
 
-INSERT INTO drawing ( img_url, title, description, completion_date, is_complete, usergallery_id)
+INSERT INTO drawing ( img_url, title, description, completion_date, is_complete, user_gallery_id)
 VALUES
 ('IMG_URL', '비 오는 날의 창가', '창밖으로 떨어지는 빗방울을 따라 그려낸 몽환적인 드로잉입니다.', '2025-05-30', true, 1),
 ('IMG_URL', '따뜻한 오후의 햇살', '햇살이 창틀에 머무는 그 순간을 포착한 그림입니다.', '2025-06-01', true, 1),
@@ -274,7 +274,7 @@ VALUES
 ('기대 이상으로 만족했어요. 다음에 다른 굿즈도 살게요!', 'yoonverse', 7, '2025-04-05'),
 ('아기자기하고 감성적인 디자인이 너무 마음에 들어요.', 'catncanvas', 8, '2025-02-22');
 
-INSERT INTO ticket ( count, select_date, artistGallery_id, purchase_date)
+INSERT INTO ticket ( count, select_date, artist_gallery_id, purchase_date)
 VALUES
 (2, '2024-05-01', 1, '2024-04-15'),
 (1, '2024-08-01', 3, '2024-07-25'),
@@ -312,14 +312,14 @@ VALUES
 (9, 4), (9, 8), (9, 9),
 (10, 2), (10, 3), (10, 7);
 
-INSERT INTO user_gallery_user (usr_gallery_id,user_name)
+INSERT INTO user_gallery_user (user_gallery_id,user_id)
 VALUES
 (1, 'artlover01'), (1, 'drawmaster'), (1, 'catncanvas'),
 (2, 'dreamybrush'), (2, 'modernline'),
 (3, 'catncanvas'), (3, 'galleryqueen'), (3, 'yoonverse'),
 (4, 'artlover01'), (4, 'drawmaster'), (4, 'dreamybrush');
 
-INSERT INTO 커뮤니티_드로잉 (community_id,drawing_id)
+INSERT INTO community_drawing (community_id,drawing_id)
 VALUES
 (1, 1), (1, 2), (1, 4),
 (2, 5), (2, 6), (2, 8),

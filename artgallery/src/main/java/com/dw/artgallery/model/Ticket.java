@@ -25,7 +25,7 @@ public class Ticket {
     private LocalDate selectDate;
 
     @ManyToOne
-    @JoinColumn(name = "artistGallery_id")
+    @JoinColumn(name = "artist_gallery_id")
     private ArtistGallery artistGallery;
 
 

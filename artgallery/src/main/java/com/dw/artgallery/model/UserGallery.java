@@ -39,8 +39,8 @@ public class UserGallery {
     private LocalDate endDate;
 
     @ManyToMany
-    @JoinTable(name = "userGallery_user",
-            joinColumns = @JoinColumn(name = "userGallery_id"),
+    @JoinTable(name = "user_gallery_user",
+            joinColumns = @JoinColumn(name = "user_gallery_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> userList = new ArrayList<>();
 
