@@ -5,7 +5,11 @@ import com.dw.artgallery.enums.SortOrder;
 import com.dw.artgallery.model.Goods;
 import com.dw.artgallery.model.User;
 import com.dw.artgallery.repository.GoodsRepository;
+import com.dw.artgallery.repository.UserRepository;
+import com.dw.exception.PermissionDeniedException;
 import com.dw.exception.ResourceNotFoundException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +20,8 @@ import java.util.stream.Collectors;
 public class GoodsService {
     @Autowired
     GoodsRepository goodsRepository;
+    @Autowired
+    UserService userService;
 
     public List<GoodsDTO> getAllGoods() {
         List<Goods> goodsList = goodsRepository.findAll();
@@ -54,7 +60,17 @@ public class GoodsService {
         return goods.getStock();
     }
 
-    public GoodsDTO addGoods(GoodsDTO goodsDTO){
-        User user =
+    public GoodsDTO addGoods(GoodsDTO goodsDTO, HttpServletRequest request){
+
+        Goods goods = new Goods();
+        goods.setName(goodsDTO.getName());
+        goods.setImgUrlList(goodsDTO.getImgUrlList());
+        goods.setDescription(goodsDTO.getDescription());
+        goods.setPrice(goodsDTO.getPrice());
+        goods.setStock(goodsDTO.getStock());
+
+        Goods saveGoods = goodsRepository.save(goods);
+
+        return GoodsDTO.fromEntity(saveGoods);
     }
 }

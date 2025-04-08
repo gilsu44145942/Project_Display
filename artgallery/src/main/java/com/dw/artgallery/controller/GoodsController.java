@@ -4,19 +4,21 @@ import com.dw.artgallery.DTO.GoodsDTO;
 import com.dw.artgallery.enums.SortOrder;
 import com.dw.artgallery.repository.GoodsRepository;
 import com.dw.artgallery.service.GoodsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/goods")
 public class GoodsController {
-    @Autowired
-    GoodsService goodsService;
+    private final GoodsService goodsService;
 
     @GetMapping
     public ResponseEntity<List<GoodsDTO>> getAllGoods(){
@@ -43,16 +45,19 @@ public class GoodsController {
         return new ResponseEntity<>(goodsService.getGoodsStockById(id), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<GoodsDTO> addGoods(@RequestBody GoodsDTO goodsDTO){
         return new ResponseEntity<>(goodsService.saveGoods(goodsDTO), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<GoodsDTO> updateGoods(@PathVariable Long id, @RequestBody GoodsDTO goodsDTO){
         return new ResponseEntity<>(goodsService.updateGoods(id, goodsDTO), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteGoods(@PathVariable Long id) {
         return new ResponseEntity<>(goodsService.deleteGoods(id), HttpStatus.OK);
