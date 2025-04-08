@@ -30,11 +30,9 @@ public class GoodsCart {
     @JoinColumn(name="goods_id")
     private Goods goods;
 
-    @ManyToMany
-    @JoinTable(name = "goods_cart_user",
-            joinColumns = @JoinColumn(name = "goods_cart_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> User = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 

@@ -20,19 +20,19 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name="goods_cart_id")
-    private GoodsCart goodsCart;
-
     @ManyToOne
     @JoinColumn(name="goods_id")
     private Goods goods;
 
-    @ManyToMany
-    @JoinTable(name = "purchase_user",
-            joinColumns = @JoinColumn(name = "purchase_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> User = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @Column(name = "amount", nullable = false)
+    private int amount;
+
+    @Column(name = "total_price", nullable = false)
+    private double totalPrice;
 
     @Column(name="purchase_date",nullable = false)
     private LocalDate purchaseDate;
