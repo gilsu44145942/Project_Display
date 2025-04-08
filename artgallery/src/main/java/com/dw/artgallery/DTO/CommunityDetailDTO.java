@@ -1,6 +1,5 @@
 package com.dw.artgallery.DTO;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +13,13 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CommunityDTO {
+public class CommunityDetailDTO {
     private String text;
     private Long likes;
     private LocalDateTime uploadDate;
     private LocalDateTime modifyDate;
     private List<String> drawingList = new ArrayList<>();
+    private List<String> commentUser= new ArrayList<>();
+    private List<String> commentText = new ArrayList<>();
+    private List<LocalDateTime> creationDateList = new ArrayList<>();
 }
