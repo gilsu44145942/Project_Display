@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -38,11 +39,11 @@ public class User {
     @Column(name = "address")
     private String address;
 
-    @Column(name="enrolment_date")
-    private LocalDate EnrolmentDate;
+    @Column(name = "enrolment_date")
+    private LocalDate enrolmentDate = LocalDate.now(); // 기본값 설정
 
-    @Column(name="point")
-    private double point;
+    @Column(name = "point")
+    private double point = 0.0; // 기본 포인트 설정
 
     @Column(name="gender")
     @Enumerated(EnumType.STRING)
@@ -52,21 +53,24 @@ public class User {
     @JoinColumn(name = "user_authority")
     private Authority authority;
 
+
+
+    public User(String userId, String encode, String nickName, String email, String realName, LocalDate birthday, String address, Gender gender, Authority authority) {
+    }
+
     public UserDTO toDTO() {
         return new UserDTO(
                 this.userId,
                 null,
+                this.nickName,
                 this.realName,
                 this.email,
                 this.birthday,
                 this.address,
-                this.EnrolmentDate,
+                this.enrolmentDate,
                 this.point,
                 this.gender
-
         );
-
-
     }
 
 
