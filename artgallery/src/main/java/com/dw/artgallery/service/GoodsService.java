@@ -84,7 +84,6 @@ public class GoodsService {
 
     public String deleteGoods(Long id){
         Goods goods = goodsRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("해당 상품이 존재하지 않습니다"));
-
         goodsRepository.delete(goods);
         return "해당 상품을 삭제하였습니다.";
     }

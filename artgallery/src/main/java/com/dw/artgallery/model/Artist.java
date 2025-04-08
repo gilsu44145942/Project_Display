@@ -26,7 +26,6 @@ public class Artist {
     @Column(name = "profile_img")
     private String profile_img;
 
-
     @OneToMany(mappedBy = "artist")
     private List<Art> artList = new ArrayList<>();
 
