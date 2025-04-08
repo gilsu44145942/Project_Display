@@ -18,8 +18,8 @@ public class Notice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="title",nullable = false)
-    private String title;
+    @Column(name="title", length = 3000,nullable = false)
+    private String noticetitle;
 
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
