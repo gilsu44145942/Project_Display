@@ -1,47 +1,53 @@
 package com.dw.artgallery.service;
 
 import com.dw.artgallery.DTO.UserDTO;
+import com.dw.artgallery.DTO.LoginDTO;
+import com.dw.artgallery.jwt.TokenProvider;
 import com.dw.artgallery.model.Authority;
 import com.dw.artgallery.model.User;
 import com.dw.artgallery.repository.AuthorityRepository;
 import com.dw.artgallery.repository.UserRepository;
 import com.dw.exception.InvalidRequestException;
 import com.dw.exception.ResourceNotFoundException;
+import com.dw.exception.UnauthorizedUserException;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
-    private final AuthorityRepository authorityRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    public UserService(UserRepository userRepository,
-                       BCryptPasswordEncoder passwordEncoder,
-                       AuthorityRepository authorityRepository) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.authorityRepository = authorityRepository;
-    }
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private TokenProvider tokenProvider;
+
+    // 🔹 회원가입
     @Transactional
     public UserDTO registerUser(UserDTO userDTO) {
         // 1. 중복 아이디 확인
         if (userRepository.existsById(userDTO.getUserId())) {
-            throw new InvalidRequestException("Username already exists");
+            throw new InvalidRequestException("이미 존재하는 사용자 ID입니다.");
         }
 
         // 2. 기본 권한 (USER) 가져오기
         Authority authority = authorityRepository.findByAuthorityName("USER")
-                .orElseThrow(() -> new ResourceNotFoundException("No role found"));
+                .orElseThrow(() -> new ResourceNotFoundException("권한을 찾을 수 없습니다."));
 
         // 3. 비밀번호 암호화
         String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
@@ -59,25 +65,58 @@ public class UserService {
                 userDTO.getPoint(),
                 userDTO.getGender(),
                 authority
-                // 가입 날짜 기본값 설정
         );
 
         // 5. 저장 후 DTO 변환
         return userRepository.save(user).toDTO();
     }
 
-    // 로그인
-    public boolean validateUser(String userId, String password) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(()->new InvalidRequestException("Invalid Username"));
-        return passwordEncoder.matches(password,user.getPassword());
+    //  JWT 로그인 (토큰 반환)
+    public String loginUser(LoginDTO loginDTO) {
+        User user = userRepository.findById(loginDTO.getUserId())
+                .orElseThrow(() -> new InvalidRequestException("사용자 ID가 존재하지 않습니다."));
+
+        // 비밀번호 검증
+        if (!passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
+            throw new UnauthorizedUserException("비밀번호가 틀렸습니다.");
+        }
+
+        // 🔥 JWT 토큰 생성 후 반환
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUserId(), null);
+        return tokenProvider.createToken(authentication);
     }
-    // 로그아웃
-    @PostMapping("/logout")
-    public ResponseEntity<String> logout(HttpServletRequest request) {
-        request.getSession().invalidate(); // 세션 종료
-        return new ResponseEntity<>(
-                "You have been logged out.",
-                HttpStatus.OK);
+
+    //  로그아웃 (클라이언트 측에서 JWT 삭제)
+    public void logoutUser(HttpSession session) {
+        session.invalidate(); // 세션 무효화
+    }
+
+    // 모든 회원 조회
+    public List<User> getAllUser() {
+        return userRepository.findAll();
+    }
+
+    //  userId로 회원 정보 조회
+    public User getUserById(String userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("입력하신 회원이 존재하지 않습니다."));
+    }
+
+    //  realName으로 회원 정보 조회
+    public User getUserByRealName(String realName) {
+        return userRepository.findById(realName)
+                .orElseThrow(() -> new ResourceNotFoundException("입력하신 회원이 존재하지 않습니다."));
+    }
+
+
+    public User getCurrentUser(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            throw new UnauthorizedUserException("권한이 없습니다.");
+        }
+
+        String userName = (String) session.getAttribute("username");
+        return userRepository.findById(userName)
+                .orElseThrow(() -> new InvalidRequestException("유저명을 찾을 수 없습니다."));
     }
 }
