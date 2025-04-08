@@ -86,27 +86,46 @@ public class UserService {
         return tokenProvider.createToken(authentication);
     }
 
-    //  로그아웃 (클라이언트 측에서 JWT 삭제)
+    //  로그아웃
     public void logoutUser(HttpSession session) {
         session.invalidate(); // 세션 무효화
     }
 
-    // 모든 회원 조회
-    public List<User> getAllUser() {
+    // 모든 회원 조회 (관리자만 가능)
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    //  userId로 회원 정보 조회
-    public User getUserById(String userId) {
-        return userRepository.findById(userId)
+
+    //  realname으로 회원 조회 (관리자만 가능)
+    public User getRealNameUser(String realname) {
+        return userRepository.findByRealName(realname)  // 여기서도 변수명 일관되게 유지
                 .orElseThrow(() -> new ResourceNotFoundException("입력하신 회원이 존재하지 않습니다."));
     }
 
-    //  realName으로 회원 정보 조회
-    public User getUserByRealName(String realName) {
-        return userRepository.findById(realName)
-                .orElseThrow(() -> new ResourceNotFoundException("입력하신 회원이 존재하지 않습니다."));
+    // 최근 가입한 유저순으로 조회 (관리지만 가능)
+    public List<UserDTO> getRecentUsers() {
+        List<User> users = userRepository.findAllByOrderByEnrolmentDateDesc();
+        return users.stream().map(User::toDTO).toList();
     }
+
+    // 포인트가 많은 유저순으로 조회 (관리자만 가능)
+    public List<UserDTO> getTopUsersByPoints() {
+        List<User> users = userRepository.findAllByOrderByPointDesc();
+        return users.stream().map(User::toDTO).toList();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public User getCurrentUser(HttpServletRequest request) {
