@@ -33,12 +33,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable) // 🔥 CSRF 비활성화
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/user/register", "/api/user/login").permitAll() // ✅ 로그인 & 회원가입 허용
-                        .requestMatchers("/error").permitAll() // ✅ 에러 페이지 허용
+
                         .requestMatchers(
                                 new AntPathRequestMatcher("/*.html"),
                                 new AntPathRequestMatcher("/api/**"),
-
                                 new AntPathRequestMatcher("/swagger-ui/**"),
                                 new AntPathRequestMatcher("/v3/api-docs/**")
                         ).permitAll()
