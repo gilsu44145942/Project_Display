@@ -1,5 +1,6 @@
 package com.dw.artgallery.DTO;
 
+import com.dw.artgallery.model.Goods;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,4 +24,15 @@ public class GoodsDTO {
     private double price;
 
     private int stock;
+
+    public static GoodsDTO fromEntity(Goods goods){
+        return new GoodsDTO(
+                goods.getId(),
+                goods.getName(),
+                goods.getImgUrlList(),
+                goods.getDescription(),
+                goods.getPrice(),
+                goods.getStock()
+        );
+    }
 }

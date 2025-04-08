@@ -18,6 +18,7 @@ public class ArtistDTO {
     private String name;
     private String profile_img;
 
+
     public static ArtistDTO fromEntity(Artist artist) {
         return new ArtistDTO(
                 artist.getId(),

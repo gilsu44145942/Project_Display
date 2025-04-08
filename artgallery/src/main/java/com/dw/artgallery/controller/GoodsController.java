@@ -42,7 +42,6 @@ public class GoodsController {
         return new ResponseEntity<>(goodsService.getGoodsStockById(id), HttpStatus.OK);
     }
 
-
     @PostMapping
     public ResponseEntity<GoodsDTO> addGoods(@RequestBody GoodsDTO goodsDTO){
         return new ResponseEntity<>(goodsService.saveGoods(goodsDTO), HttpStatus.CREATED);
@@ -54,7 +53,7 @@ public class GoodsController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<GoodsDTO> deleteGoods(@PathVariable Long id) {
+    public ResponseEntity<String> deleteGoods(@PathVariable Long id) {
         return new ResponseEntity<>(goodsService.deleteGoods(id), HttpStatus.OK);
     }
 }

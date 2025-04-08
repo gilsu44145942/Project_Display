@@ -37,14 +37,5 @@ public class Goods {
     @Column(name="stock",nullable = false)
     private int stock;
 
-    public static GoodsDTO toDTO(Goods goods){
-        return new GoodsDTO(
-                goods.getId(),
-                goods.getName(),
-                goods.getImgUrlList(),
-                goods.getDescription(),
-                goods.getPrice(),
-                goods.getStock()
-        );
-    }
+
 }
