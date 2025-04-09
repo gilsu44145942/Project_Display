@@ -38,6 +38,9 @@ public class Art {
     @JoinColumn(name="artist_id")
     private Artist artist;
 
+    @Column(name = "is_deleted")
+    private boolean deleted=false;
+
 
     public Art(String title, String imgUrl, String description, LocalDate completionDate, LocalDate uploadDate, Artist artist) {
     }

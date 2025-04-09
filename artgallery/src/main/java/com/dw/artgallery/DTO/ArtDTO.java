@@ -17,13 +17,17 @@ public class ArtDTO {
     private LocalDate completionDate;
     private LocalDate uploadDate;
     private String artistName;  // Artist의 이름만 포함
+    private boolean isDeleted;
 
-    public ArtDTO(Long id, String title, String imgUrl, String description, LocalDate completionDate, LocalDate uploadDate) {
+    public ArtDTO(Long id, String title, String imgUrl, String description, LocalDate completionDate, LocalDate uploadDate, boolean isDeleted) {
         this.id = id;
         this.title = title;
         this.imgUrl = imgUrl;
         this.description = description;
         this.completionDate = completionDate;
         this.uploadDate = uploadDate;
+        this.isDeleted = isDeleted;
+
     }
+
 }

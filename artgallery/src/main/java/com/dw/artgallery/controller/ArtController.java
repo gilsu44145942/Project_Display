@@ -22,7 +22,7 @@ public class ArtController {
     ArtService artService;
 
     // 모든 작품 조회
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<List<Art>> getAllArt() {
         return ResponseEntity.ok(artService.getAllArt());
     }
@@ -42,7 +42,7 @@ public class ArtController {
     }
 
     // 작품 삭제 (관리자)
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}/delete")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> deleteArt(@PathVariable Long id) {
         artService.deleteArtById(id);

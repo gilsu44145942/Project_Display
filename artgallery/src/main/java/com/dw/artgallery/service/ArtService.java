@@ -63,7 +63,7 @@ public class ArtService {
     public void deleteArtById(Long id) {
         Art art = artRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("해당 작품을 찾을 수 없습니다."));
-        artRepository.delete(art);
+        art.set;
     }
 
     // 작품 추가 (관리자)
@@ -73,6 +73,7 @@ public class ArtService {
         art.setTitle(artCreateDTO.getTitle());
         art.setImgUrl(artCreateDTO.getImgUrl());
         art.setDescription(artCreateDTO.getDescription());
+        art.setDeleted(false);
 
         // ✅ NULL 방지: 기본값 설정
         art.setCompletionDate(artCreateDTO.getCompletionDate() != null ?
