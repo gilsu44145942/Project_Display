@@ -50,7 +50,6 @@ public class CommunityController {
         } else {
             throw new IllegalStateException("알 수 없는 사용자 타입: " + principal.getClass());
         }
-
         List<CommunityDTO> communities = communityService.getUserIDCommunity(userId);
         return new ResponseEntity<>(communities, HttpStatus.OK);
     }
