@@ -83,6 +83,7 @@ public class Community {
         List<String> commentText1 = new ArrayList<>();
         List<LocalDateTime> creationDateList1 = new ArrayList<>();
         for (Comment data : commentList) {
+            if (Boolean.TRUE.equals(data.getIsDeleted())) continue;
             commentUser1.add(data.getUser().getNickName());
             commentText1.add(data.getText());
             creationDateList1.add(data.getCreationDate());

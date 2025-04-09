@@ -29,6 +29,9 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted = false;
+
     @ManyToOne
     @JoinColumn(name="community_id")
     private Community community;

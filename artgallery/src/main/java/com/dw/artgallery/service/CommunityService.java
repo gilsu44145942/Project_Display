@@ -56,12 +56,10 @@ public class CommunityService {
         return communities.stream().map(Community::toDto).toList();
     }
 
-    public void toggleLike(Long communityId, String userId) {
-        Community community = communityRepository.findById(communityId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 커뮤니티 글이 없습니다."));
 
-        User user = userRepository.findByUserId(userId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 유저가 없습니다."));
+    public String toggleLike(Long id, User user) {
+        Community community = communityRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 커뮤니티 글이 없습니다."));
 
         Optional<CommunityLike> likeOptional = communityLikeRepository.findByUserAndCommunity(user, community);
 
@@ -78,14 +76,17 @@ public class CommunityService {
         }
 
         communityRepository.save(community);
+        return "좋아요 토글 완료!";
     }
 
-    public void updateCommunity(Long communityId, String userId, CommunityUpdateDTO dto) {
-        Community community = communityRepository.findById(communityId)
+    public String updateCommunity(Long id, User user, CommunityUpdateDTO dto) {
+        Community community = communityRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("해당 커뮤니티 글이 존재하지 않습니다."));
-        if (!community.getUser().getUserId().equals(userId)) {
+
+        if (!community.getUser().getUserId().equals(user.getUserId())) {
             throw new SecurityException("본인의 글만 수정할 수 있습니다.");
         }
+
         community.setText(dto.getText());
         if (dto.getDrawingIds() != null) {
             List<Drawing> drawings = drawingRepository.findAllById(dto.getDrawingIds());
@@ -94,18 +95,20 @@ public class CommunityService {
         community.setModifyDate(LocalDateTime.now());
 
         communityRepository.save(community);
+        return "커뮤니티 글이 수정되었습니다.";
     }
 
-
-    public void deleteCommunity(Long communityId, String userId) {
-        Community community = communityRepository.findById(communityId)
+    public String deleteCommunity(Long id, User user) {
+        Community community = communityRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("해당 커뮤니티 글이 존재하지 않습니다."));
-        if (!community.getUser().getUserId().equals(userId)) {
+
+        if (!community.getUser().getUserId().equals(user.getUserId())) {
             throw new SecurityException("본인 글만 삭제할 수 있습니다.");
         }
 
         community.setIsDeleted(true);
         communityRepository.save(community);
+        return "커뮤니티 글이 삭제 처리되었습니다.";
     }
 }
 
