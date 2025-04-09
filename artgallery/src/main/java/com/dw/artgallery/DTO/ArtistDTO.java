@@ -17,13 +17,15 @@ public class ArtistDTO {
     private Long id;
     private String name;
     private String profile_img;
+    private List<ArtDetailDTO> artDetailDTOList;
 
 
     public static ArtistDTO fromEntity(Artist artist) {
         return new ArtistDTO(
                 artist.getId(),
                 artist.getName(),
-                artist.getProfile_img()
+                artist.getProfile_img(),
+                artist.getArtList().stream().map(ArtDetailDTO::fromEntity).toList()
         );
     }
 }

@@ -1,6 +1,7 @@
 package com.dw.artgallery.controller;
 
 import com.dw.artgallery.DTO.ArtDTO;
+import com.dw.artgallery.DTO.ArtDetailDTO;
 import com.dw.artgallery.DTO.ArtistDTO;
 import com.dw.artgallery.service.ArtistService;
 import lombok.RequiredArgsConstructor;
@@ -45,11 +46,6 @@ public class ArtistController {
     @PutMapping("/{id}")
     public ResponseEntity<ArtistDTO> updateArtist(@PathVariable Long id, @RequestBody ArtistDTO artistDTO) {
         return new ResponseEntity<>(artistService.updateArtist(id, artistDTO), HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}/arts")
-    public ResponseEntity<List<ArtDTO>> getArtByArtistId(@PathVariable Long id) {
-        return new ResponseEntity<>(artistService.getArtByArtistId(id),HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
