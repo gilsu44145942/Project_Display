@@ -50,7 +50,7 @@ public class ArtController {
     }
 
     // 작품 추가 (관리자)
-    @PostMapping("")
+    @PostMapping("/add")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<ArtDTO> createArt(@Valid @RequestBody ArtCreateDTO artCreateDTO) {
         return new ResponseEntity<>(artService.createArt(artCreateDTO), HttpStatus.CREATED);
