@@ -34,6 +34,9 @@ public class Community {
     @Column(name="modify_date",nullable = false)
     private LocalDateTime modifyDate;
 
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted = false;
+
     @ManyToOne
     @JoinColumn(name ="user_id")
     private User user;
