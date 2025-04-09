@@ -36,14 +36,14 @@
 
         // 작품 수정 (관리자)
         @PutMapping("/update/{id}")
-        @PreAuthorize("hasAuthority('ADMIN')")
+        @PreAuthorize("hasRole('ADMIN')")
         public ResponseEntity<ArtDTO> updateArt(@PathVariable Long id, @RequestBody ArtUpdateDTO artUpdateDTO) {
             return ResponseEntity.ok(artService.updateArt(id, artUpdateDTO));
         }
 
         // 작품 삭제 (관리자)
         @PostMapping("/{id}/delete")
-        @PreAuthorize("hasAuthority('ADMIN')")
+        @PreAuthorize("hasRole('ADMIN')")
         public ResponseEntity<String> deleteArt(@PathVariable Long id) {
             artService.deleteArtById(id);
             return ResponseEntity.ok("작품이 성공적으로 삭제되었습니다.");
@@ -51,7 +51,7 @@
 
         // 작품 추가 (관리자)
         @PostMapping("/add")
-        @PreAuthorize("hasAuthority('ADMIN')")
+        @PreAuthorize("hasRole('ADMIN')")
         public ResponseEntity<ArtDTO> createArt(@Valid @RequestBody ArtCreateDTO artCreateDTO) {
             return new ResponseEntity<>(artService.createArt(artCreateDTO), HttpStatus.CREATED);
         }
