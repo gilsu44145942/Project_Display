@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -138,6 +139,36 @@ public class UserService {
         String userName = (String) session.getAttribute("username");
         return userRepository.findById(userName)
                 .orElseThrow(() -> new InvalidRequestException("유저명을 찾을 수 없습니다."));
+    }
+
+    //  UserID로 회원 조회
+    public UserGetDTO getUserById(String userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("해당 ID의 사용자를 찾을 수 없습니다: " + userId));
+        return convertToDTO(user);
+    }
+
+    //  Nickname으로 회원 조회
+    public List<UserGetDTO> getUsersByNickname(String nickname) {
+        return userRepository.findByNickName(nickname)
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    //  Email로 회원 조회
+    public UserGetDTO getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("해당 이메일의 사용자를 찾을 수 없습니다: " + email));
+        return convertToDTO(user);
+    }
+
+    //  Address로 회원 조회
+    public List<UserGetDTO> getUsersByAddress(String address) {
+        return userRepository.findByAddress(address)
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     private UserGetDTO convertToDTO(User user) {

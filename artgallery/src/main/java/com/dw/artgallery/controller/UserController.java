@@ -94,4 +94,32 @@ public class UserController {
     public ResponseEntity<List<UserGetDTO>> getTopUsersByPoints() {
         return ResponseEntity.ok(userService.getTopUsersByPoints());
     }
+    //  UserID로 회원 조회
+    @GetMapping("/id/{userId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UserGetDTO> getUserById(@PathVariable String userId) {
+        return ResponseEntity.ok(userService.getUserById(userId));
+    }
+
+    //  Nickname으로 회원 조회
+    @GetMapping("/nickname/{nickname}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<UserGetDTO>> getUsersByNickname(@PathVariable String nickname) {
+        return ResponseEntity.ok(userService.getUsersByNickname(nickname));
+    }
+
+    //  Email로 회원 조회
+    @GetMapping("/email/{email}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UserGetDTO> getUserByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(userService.getUserByEmail(email));
+    }
+
+    //  Address로 회원 조회
+    @GetMapping("/address/{address}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<UserGetDTO>> getUsersByAddress(@PathVariable String address) {
+        return ResponseEntity.ok(userService.getUsersByAddress(address));
+    }
 }
+
