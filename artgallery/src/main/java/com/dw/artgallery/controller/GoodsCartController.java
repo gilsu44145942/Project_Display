@@ -1,16 +1,14 @@
 package com.dw.artgallery.controller;
 
 import com.dw.artgallery.DTO.GoodsCartDTO;
-import com.dw.artgallery.DTO.GoodsDTO;
-import com.dw.artgallery.model.Goods;
-import com.dw.artgallery.model.GoodsCart;
 import com.dw.artgallery.service.GoodsCartService;
 import com.dw.artgallery.service.GoodsService;
+import com.dw.exception.UnauthorizedUserException;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,26 +16,48 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/cart")
 public class GoodsCartController {
-    GoodsService goodsService;
-    GoodsCartService goodsCartService;
+    private final GoodsService goodsService;
+    private final GoodsCartService goodsCartService;
 
-//    @GetMapping
-//    public ResponseEntity<List<GoodsCartDTO>> getAllGoodsCart(){
-//        return new ResponseEntity<>(goodsCartService.getAllGoodsCart(), HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/id/{id}")
-//    public ResponseEntity<GoodsCartDTO> getGoodsCartById(@PathVariable Long id){
-//        return new ResponseEntity<>(goodsCartService.getGoodsCartById(id), HttpStatus.OK);
-//    }
-//
-//    @PostMapping
-//    public ResponseEntity<GoodsCartDTO> addGoodsCart(@RequestBody GoodsCartDTO goodsCartDTO){
-//        return new ResponseEntity<>(goodsCartService.addGoodsCart(goodsCartDTO),HttpStatus.CREATED);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<String> deleteGoodsCart(@PathVariable Long id){
-//        return new ResponseEntity<>(goodsCartService.deleteGoodsCart(id), HttpStatus.OK);
-//    }
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<GoodsCartDTO>> getAllGoodsCart(){
+        return new ResponseEntity<>(goodsCartService.getAllGoodsCart(), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<GoodsCartDTO>> getGoodsCartByUser(@PathVariable String userId,  Authentication authentication) {
+        if (!authentication.getName().equals(userId)) {
+            throw new UnauthorizedUserException("자신의 장바구니만 조회할 수 있습니다.");
+        }
+        return new ResponseEntity<>(goodsCartService.getGoodsCartByUserId(userId), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping
+    public ResponseEntity<GoodsCartDTO> addGoodsCart(@RequestBody GoodsCartDTO goodsCartDTO){
+        return new ResponseEntity<>(goodsCartService.addGoodsCart(goodsCartDTO),HttpStatus.CREATED);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteGoodsCart(@PathVariable Long id){
+        return new ResponseEntity<>(goodsCartService.deleteGoodsCart(id), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @DeleteMapping
+    public ResponseEntity<Void> deleteGoodsCartByIds(@RequestBody List<Long> ids) {
+        return new ResponseEntity<>(goodsCartService.deleteGoodsCartByIds(ids),HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @DeleteMapping("/user/{userId}")
+    public ResponseEntity<Void> deleteAllByUser(@PathVariable String userId, Authentication authentication) {
+        if (!authentication.getName().equals(userId)) {
+            throw new UnauthorizedUserException("자신의 장바구니만 삭제할 수 있습니다.");
+        }
+        return new ResponseEntity<>(goodsCartService.deleteAllByUser(userId), HttpStatus.OK);
+    }
 }
