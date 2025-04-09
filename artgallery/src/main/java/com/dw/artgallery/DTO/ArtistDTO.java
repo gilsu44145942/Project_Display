@@ -18,6 +18,7 @@ public class ArtistDTO {
     private String name;
     private String profile_img;
     private String description;
+    private boolean isDeleted;
     private List<BiographyDTO> biographyList;
 
 
@@ -27,8 +28,20 @@ public class ArtistDTO {
                 artist.getName(),
                 artist.getProfile_img(),
                 artist.getDescription(),
+                artist.isDeleted(),
                 artist.getBiographyList().stream()
-                        .map(BiographyDTO::fromEntity).toList()
+                .map(BiographyDTO::fromEntity)
+                .toList()
         );
+    }
+
+    public Artist toEntity() {
+        Artist artist = new Artist();
+        artist.setId(this.id);
+        artist.setName(this.name);
+        artist.setProfile_img(this.profile_img);
+        artist.setDescription(this.description);
+        artist.setDeleted(this.isDeleted);
+        return artist;
     }
 }

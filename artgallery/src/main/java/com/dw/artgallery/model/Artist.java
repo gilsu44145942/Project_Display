@@ -29,6 +29,9 @@ public class Artist {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "is_deleted", nullable = false)
+    private boolean deleted = false;
+
     @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Biography> biographyList = new ArrayList<>();
 
@@ -37,5 +40,6 @@ public class Artist {
 
     @ManyToMany(mappedBy = "artistList")
     private List<ArtistGallery> artistGalleryList = new ArrayList<>();
+
 
 }
