@@ -1,10 +1,12 @@
 package com.dw.artgallery.controller;
 
+import com.dw.artgallery.DTO.ArtCreateDTO;
 import com.dw.artgallery.DTO.ArtDTO;
 import com.dw.artgallery.DTO.ArtDetailDTO;
 import com.dw.artgallery.DTO.ArtUpdateDTO;
 import com.dw.artgallery.model.Art;
 import com.dw.artgallery.service.ArtService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,17 +34,25 @@ public class ArtController {
     }
 
 
-    // 작품 수정 (UPDATE) 관리자만 가능
+    // 작품 수정 (관리자)
     @PutMapping("/update/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<ArtDTO> updateArt(@PathVariable Long id, @RequestBody ArtUpdateDTO artUpdateDTO) {
         return ResponseEntity.ok(artService.updateArt(id, artUpdateDTO));
     }
 
+    // 작품 삭제 (관리자)
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> deleteArt(@PathVariable Long id) {
         artService.deleteArtById(id);
         return ResponseEntity.ok("작품이 성공적으로 삭제되었습니다.");
+    }
+
+    // 작품 추가 (관리자)
+    @PostMapping("")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<ArtDTO> createArt(@Valid @RequestBody ArtCreateDTO artCreateDTO) {
+        return new ResponseEntity<>(artService.createArt(artCreateDTO), HttpStatus.CREATED);
     }
 }

@@ -1,9 +1,8 @@
 package com.dw.artgallery.DTO;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -11,13 +10,22 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+public class ArtCreateDTO {
+    @NotBlank(message = "제목을 입력하세요.")
+    private String title;
 
-    public class ArtCreateDTO {
-        private String title;
-        private String imgUrl;
-        private String description;
-        private LocalDate completionDate;
-        private LocalDate uploadDate;
-        private Long artistId; // artistId를 받아야 DB 저장 가능
-    }
+    @NotBlank(message = "이미지 URL을 입력하세요.")
+    private String imgUrl;
 
+    @NotBlank(message = "작품 설명을 입력하세요.")
+    private String description;
+
+    @NotNull(message = "작품 완성 날짜를 입력하세요.")
+    private LocalDate completionDate;
+
+    @NotNull(message = "업로드 날짜를 입력하세요.")
+    private LocalDate uploadDate;
+
+    @NotNull(message = "작가 ID를 입력하세요.")
+    private Long artistId;
+}

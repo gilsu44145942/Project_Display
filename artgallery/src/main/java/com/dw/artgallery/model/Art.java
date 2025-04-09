@@ -39,6 +39,6 @@ public class Art {
     private Artist artist;
 
 
-
-
+    public Art(String title, String imgUrl, String description, LocalDate completionDate, LocalDate uploadDate, Artist artist) {
+    }
 }

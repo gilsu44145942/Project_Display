@@ -1,5 +1,6 @@
 package com.dw.artgallery.service;
 
+import com.dw.artgallery.DTO.ArtCreateDTO;
 import com.dw.artgallery.DTO.ArtDTO;
 import com.dw.artgallery.DTO.ArtUpdateDTO;
 import com.dw.artgallery.model.Art;
@@ -11,6 +12,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -32,7 +34,7 @@ public class ArtService {
         return convertToDTO(art);
     }
 
-    // 작품 수정 관리자만 가능
+    // 작품 수정 (관리자)
     public ArtDTO updateArt(Long id, ArtUpdateDTO artUpdateDTO) {
         Art art = artRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Art not found with id: " + id));
@@ -56,12 +58,36 @@ public class ArtService {
         return convertToDTO(updatedArt);
     }
 
-    // 작품 삭제 관리자만 가능
+    // 작품 삭제 (관리자)
     @Transactional
     public void deleteArtById(Long id) {
         Art art = artRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("해당 작품을 찾을 수 없습니다."));
         artRepository.delete(art);
+    }
+
+    // 작품 추가 (관리자)
+    @Transactional
+    public ArtDTO createArt(ArtCreateDTO artCreateDTO) {
+        Art art = new Art();
+        art.setTitle(artCreateDTO.getTitle());
+        art.setImgUrl(artCreateDTO.getImgUrl());
+        art.setDescription(artCreateDTO.getDescription());
+
+        // ✅ NULL 방지: 기본값 설정
+        art.setCompletionDate(artCreateDTO.getCompletionDate() != null ?
+                artCreateDTO.getCompletionDate() : LocalDate.now());
+
+        art.setUploadDate(artCreateDTO.getUploadDate() != null ?
+                artCreateDTO.getUploadDate() : LocalDate.now());
+
+        // 작가 설정
+        Artist artist = artistRepository.findById(artCreateDTO.getArtistId())
+                .orElseThrow(() -> new ResourceNotFoundException("해당 작가를 찾을 수 없습니다."));
+        art.setArtist(artist);
+
+        Art savedArt = artRepository.save(art);
+        return convertToDTO(savedArt);
     }
 
 
