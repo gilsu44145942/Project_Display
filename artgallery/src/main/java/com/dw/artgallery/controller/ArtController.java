@@ -38,4 +38,11 @@ public class ArtController {
     public ResponseEntity<ArtDTO> updateArt(@PathVariable Long id, @RequestBody ArtUpdateDTO artUpdateDTO) {
         return ResponseEntity.ok(artService.updateArt(id, artUpdateDTO));
     }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<String> deleteArt(@PathVariable Long id) {
+        artService.deleteArtById(id);
+        return ResponseEntity.ok("작품이 성공적으로 삭제되었습니다.");
+    }
 }

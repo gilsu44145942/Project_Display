@@ -120,13 +120,7 @@ public class UserService {
         return users.stream().map(User::toDTO).toList();
     }
 
-    @Transactional
-    public void deleteArtById(Long artId) {
-        Art art = artRepository.findById(artId)
-                .orElseThrow(() -> new ResourceNotFoundException("해당 작품을 찾을 수 없습니다."));
 
-        artRepository.delete(art);
-    }
 
 
 

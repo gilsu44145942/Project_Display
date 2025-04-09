@@ -7,6 +7,7 @@ import com.dw.artgallery.model.Artist;
 import com.dw.artgallery.repository.ArtRepository;
 import com.dw.artgallery.repository.ArtistRepository;
 import com.dw.exception.ResourceNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class ArtService {
         return convertToDTO(art);
     }
 
-    // 수정 (UPDATE)
+    // 작품 수정 관리자만 가능
     public ArtDTO updateArt(Long id, ArtUpdateDTO artUpdateDTO) {
         Art art = artRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Art not found with id: " + id));
@@ -55,6 +56,13 @@ public class ArtService {
         return convertToDTO(updatedArt);
     }
 
+    // 작품 삭제 관리자만 가능
+    @Transactional
+    public void deleteArtById(Long id) {
+        Art art = artRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("해당 작품을 찾을 수 없습니다."));
+        artRepository.delete(art);
+    }
 
 
 
