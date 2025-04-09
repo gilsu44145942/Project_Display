@@ -9,22 +9,24 @@ import com.dw.artgallery.repository.ArtRepository;
 import com.dw.artgallery.repository.ArtistRepository;
 import com.dw.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class ArtService {
-    @Autowired
-    ArtRepository artRepository;
-    @Autowired
-    ArtistRepository artistRepository;
+
+    private final ArtRepository artRepository;
+    private final ArtistRepository artistRepository;
 
     public List<Art> getAllArt() {
-        return artRepository.findAll();
+        return artRepository.findByDeletedFalse();  // 👈 deleted = false 인 항목만 조회
     }
+
 
     // ID로 작품 조회 후 DTO 변환
     public ArtDTO findByIdArtId(Long id) {
@@ -63,7 +65,7 @@ public class ArtService {
     public void deleteArtById(Long id) {
         Art art = artRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("해당 작품을 찾을 수 없습니다."));
-        art.set;
+        art.setDeleted(true);
     }
 
     // 작품 추가 (관리자)

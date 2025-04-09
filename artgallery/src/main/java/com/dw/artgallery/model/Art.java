@@ -43,5 +43,12 @@ public class Art {
 
 
     public Art(String title, String imgUrl, String description, LocalDate completionDate, LocalDate uploadDate, Artist artist) {
+        this.title = title;
+        this.imgUrl = imgUrl;
+        this.description = description;
+        this.completionDate = completionDate;
+        this.uploadDate = uploadDate;
+        this.artist = artist;
+        this.deleted = false;
     }
 }
