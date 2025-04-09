@@ -17,7 +17,8 @@ public class ArtistDTO {
     private Long id;
     private String name;
     private String profile_img;
-    private List<ArtDetailDTO> artDetailDTOList;
+    private String description;
+    private List<BiographyDTO> biographyList;
 
 
     public static ArtistDTO fromEntity(Artist artist) {
@@ -25,7 +26,9 @@ public class ArtistDTO {
                 artist.getId(),
                 artist.getName(),
                 artist.getProfile_img(),
-                artist.getArtList().stream().map(ArtDetailDTO::fromEntity).toList()
+                artist.getDescription(),
+                artist.getBiographyList().stream()
+                        .map(BiographyDTO::fromEntity).toList()
         );
     }
 }

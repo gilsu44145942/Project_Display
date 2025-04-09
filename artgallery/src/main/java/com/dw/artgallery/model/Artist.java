@@ -26,7 +26,13 @@ public class Artist {
     @Column(name = "profile_img")
     private String profile_img;
 
-    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
+    @Column(name = "description", columnDefinition = "TEXT")
+    private String description;
+
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Biography> biographyList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "artist")
     private List<Art> artList = new ArrayList<>();
 
     @ManyToMany(mappedBy = "artistList")
