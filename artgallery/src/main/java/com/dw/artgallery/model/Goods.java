@@ -35,5 +35,12 @@ public class Goods {
     @Column(name="stock",nullable = false)
     private int stock;
 
+    public String getThumbnailUrl() {
+        if (imgUrlList != null && !imgUrlList.isEmpty()) {
+            return imgUrlList.getFirst(); // 대표 이미지
+        }
+        return null;
+    }
+
 
 }

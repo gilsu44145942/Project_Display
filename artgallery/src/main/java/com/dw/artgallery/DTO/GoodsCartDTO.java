@@ -15,10 +15,10 @@ public class GoodsCartDTO {
     private Long id;
     private int amount;
     private double sum;
-
     private String goodsName;
+    private Long goodsId;
     private double goodsPrice;
-
+    private String imgUrl;
     private String userId;
     private String nickName;
 
@@ -28,7 +28,9 @@ public class GoodsCartDTO {
                 goodsCart.getAmount(),
                 goodsCart.getSum(),
                 goodsCart.getGoods().getName(),
+                goodsCart.getGoods().getId(),
                 goodsCart.getGoods().getPrice(),
+                goodsCart.getGoods().getThumbnailUrl(),
                 goodsCart.getUser().getUserId(),
                 goodsCart.getUser().getNickName()
         );
