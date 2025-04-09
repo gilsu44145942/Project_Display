@@ -23,6 +23,7 @@ public class ArtService {
     private final ArtRepository artRepository;
     private final ArtistRepository artistRepository;
 
+    // 전체 작품 조회
     public List<Art> getAllArt() {
         return artRepository.findByDeletedFalse();  // 👈 deleted = false 인 항목만 조회
     }

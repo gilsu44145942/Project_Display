@@ -98,30 +98,34 @@ public class UserService {
         session.invalidate(); // 세션 무효화
     }
 
+    // 모든 유저 조회
     public List<UserGetDTO> getAllUsers() {
         return userRepository.findAll()
                 .stream()
-                .map(this::convertToDTO) // 🔹 User → UserGetDTO 변환
+                .map(this::convertToDTO)
                 .toList();
     }
 
 
     //  realname으로 회원 조회 (관리자만 가능)
-    public User getRealNameUser(String realname) {
-        return userRepository.findByRealName(realname)  // 여기서도 변수명 일관되게 유지
-                .orElseThrow(() -> new ResourceNotFoundException("입력하신 회원이 존재하지 않습니다."));
+    public UserGetDTO getRealNameUser(String realname) {
+        User user = userRepository.findByRealName(realname).orElseThrow(()-> new ResourceNotFoundException("일치하는 회원이 없습니다."));
+        return convertToDTO(user);
     }
 
     // 최근 가입한 유저순으로 조회 (관리지만 가능)
-    public List<UserDTO> getRecentUsers() {
-        List<User> users = userRepository.findAllByOrderByEnrolmentDateDesc();
-        return users.stream().map(User::toDTO).toList();
+    public List<UserGetDTO> getRecentUsers() {
+        return userRepository.findAllByOrderByEnrolmentDateDesc()
+                .stream()
+                .map(this::convertToDTO)
+                .toList();
+
     }
 
     // 포인트가 많은 유저순으로 조회 (관리자만 가능)
-    public List<UserDTO> getTopUsersByPoints() {
-        List<User> users = userRepository.findAllByOrderByPointDesc();
-        return users.stream().map(User::toDTO).toList();
+    public List<UserGetDTO> getTopUsersByPoints() {
+        return  userRepository.findAllByOrderByPointDesc()
+         .stream().map(this::convertToDTO).toList();
     }
 
 

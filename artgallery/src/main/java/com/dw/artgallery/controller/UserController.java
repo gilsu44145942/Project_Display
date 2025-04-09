@@ -77,22 +77,21 @@ public class UserController {
     // realname으로 회원 조회 (관리자만 가능)
     @GetMapping("/realname/{realname}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<User> getRealNameUser(@PathVariable String realname) {
+    public ResponseEntity<UserGetDTO> getRealNameUser(@PathVariable String realname) {
         return ResponseEntity.ok(userService.getRealNameUser(realname)); // 여기서도 변수명 맞추기
     }
 
     // 최근 가입한 유저순으로 조회 (관리지만 가능)
     @GetMapping("/recent")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<UserDTO>> getRecentUsers() {
+    public ResponseEntity<List<UserGetDTO>> getRecentUsers() {
         return ResponseEntity.ok(userService.getRecentUsers());
     }
 
     // 포인트가 많은 유저순으로 조회 (관리자만 가능)
     @GetMapping("/top-points")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<UserDTO>> getTopUsersByPoints() {
+    public ResponseEntity<List<UserGetDTO>> getTopUsersByPoints() {
         return ResponseEntity.ok(userService.getTopUsersByPoints());
     }
-
 }
