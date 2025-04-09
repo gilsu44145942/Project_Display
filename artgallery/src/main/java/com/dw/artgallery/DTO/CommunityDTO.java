@@ -19,5 +19,6 @@ public class CommunityDTO {
     private Long likes;
     private LocalDateTime uploadDate;
     private LocalDateTime modifyDate;
+    private String user;
     private List<String> drawingList = new ArrayList<>();
 }

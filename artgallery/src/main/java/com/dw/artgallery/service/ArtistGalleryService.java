@@ -32,9 +32,7 @@ public class ArtistGalleryService {
         if (result.isEmpty()) {
             throw new ResourceNotFoundException("해당 제목의 전시회를 찾을 수 없습니다.");
         }
-        return result.stream()
-                .map(ArtistGallery::toDto)
-                .collect(Collectors.toList());
+        return result.stream().map(ArtistGallery::toDto).collect(Collectors.toList());
     }
 
     public List<ArtistGalleryDTO> getNowArtistGallery() {

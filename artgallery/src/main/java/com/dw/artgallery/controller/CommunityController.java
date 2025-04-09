@@ -32,7 +32,12 @@ public class CommunityController {
         return new ResponseEntity<>(communityService.getIdCommunity(id),HttpStatus.OK);
     }
 
-    
+    @GetMapping("/userid/{userid}")
+    public ResponseEntity<List<CommunityDTO>> getUserIDCommunity (@PathVariable String userid){
+        return new ResponseEntity<>(communityService.getUserIDCommunity(userid),HttpStatus.OK);
+    }
+
+
 
 
 }

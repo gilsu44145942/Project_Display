@@ -36,6 +36,10 @@ public class Community {
     @Column(name="modify_date",nullable = false)
     private LocalDateTime modifyDate;
 
+    @ManyToOne
+    @JoinColumn(name ="user_id")
+    private User user;
+
     @OneToMany(mappedBy = "community")
     private List<Comment> commentList = new ArrayList<>();
 
@@ -52,6 +56,7 @@ public class Community {
         communityDTO.setLikes(this.likes);
         communityDTO.setUploadDate(this.uploadDate);
         communityDTO.setModifyDate(this.modifyDate);
+        communityDTO.setUser(this.user.getNickName());
         List<String> drawingList1 = new ArrayList<>();
         for(Drawing data :drawingList){
             drawingList1.add(data.getImgUrl());
@@ -67,6 +72,7 @@ public class Community {
         communityDetailDTO.setLikes(this.likes);
         communityDetailDTO.setUploadDate(this.uploadDate);
         communityDetailDTO.setModifyDate(this.modifyDate);
+        communityDetailDTO.setUser(this.user.getNickName());
         List<String> drawingList1 = new ArrayList<>();
         for(Drawing data :drawingList){
             drawingList1.add(data.getImgUrl());
