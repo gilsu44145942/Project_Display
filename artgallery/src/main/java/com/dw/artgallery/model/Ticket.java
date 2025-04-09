@@ -29,6 +29,7 @@ public class Ticket {
     private ArtistGallery artistGallery;
 
 
+
     @Column(name="purchase_date",nullable = false)
     private LocalDate purchaseDate;
 
