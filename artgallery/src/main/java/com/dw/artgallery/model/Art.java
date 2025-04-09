@@ -38,17 +38,16 @@ public class Art {
     @JoinColumn(name="artist_id")
     private Artist artist;
 
-    @Column(name = "is_deleted")
+    @Column(name = "is_deleted", nullable = false)
     private Boolean deleted=false;
 
 
-    public Art(String title, String imgUrl, String description, LocalDate completionDate, LocalDate uploadDate, Artist artist,Boolean deleted) {
+    public Art(String title, String imgUrl, String description, LocalDate completionDate, LocalDate uploadDate, Artist artist) {
         this.title = title;
         this.imgUrl = imgUrl;
         this.description = description;
         this.completionDate = completionDate;
         this.uploadDate = uploadDate;
         this.artist = artist;
-        this.deleted = false;
     }
 }
