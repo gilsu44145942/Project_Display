@@ -94,5 +94,12 @@ public class UserController {
         return ResponseEntity.ok(userService.getTopUsersByPoints());
     }
 
-    //
+    // 작품 삭제 (관리자만 가능)
+    @DeleteMapping("/art/{artId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<String> deleteArt(@PathVariable Long artId) {
+        userService.deleteArtById(artId);
+        return ResponseEntity.ok("작품이 성공적으로 삭제되었습니다.");
+    }
+
 }

@@ -3,8 +3,10 @@ package com.dw.artgallery.service;
 import com.dw.artgallery.DTO.UserDTO;
 import com.dw.artgallery.DTO.LoginDTO;
 import com.dw.artgallery.jwt.TokenProvider;
+import com.dw.artgallery.model.Art;
 import com.dw.artgallery.model.Authority;
 import com.dw.artgallery.model.User;
+import com.dw.artgallery.repository.ArtRepository;
 import com.dw.artgallery.repository.AuthorityRepository;
 import com.dw.artgallery.repository.UserRepository;
 import com.dw.exception.InvalidRequestException;
@@ -36,6 +38,9 @@ public class UserService {
 
     @Autowired
     private TokenProvider tokenProvider;
+
+    @Autowired
+    private ArtRepository artRepository;
 
     // 🔹 회원가입
     @Transactional
@@ -112,7 +117,15 @@ public class UserService {
     // 포인트가 많은 유저순으로 조회 (관리자만 가능)
     public List<UserDTO> getTopUsersByPoints() {
         List<User> users = userRepository.findAllByOrderByPointDesc();
-        return users.stream().map(User::toDTO).toList();  
+        return users.stream().map(User::toDTO).toList();
+    }
+
+    @Transactional
+    public void deleteArtById(Long artId) {
+        Art art = artRepository.findById(artId)
+                .orElseThrow(() -> new ResourceNotFoundException("해당 작품을 찾을 수 없습니다."));
+
+        artRepository.delete(art);
     }
 
 
