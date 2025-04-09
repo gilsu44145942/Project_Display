@@ -2,6 +2,8 @@ package com.dw.artgallery.controller;
 
 import com.dw.artgallery.DTO.ArtDTO;
 import com.dw.artgallery.DTO.ArtDetailDTO;
+import com.dw.artgallery.DTO.ArtUpdateDTO;
+import com.dw.artgallery.model.Art;
 import com.dw.artgallery.service.ArtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,16 +19,23 @@ public class ArtController {
     @Autowired
     ArtService artService;
 
-
-    @GetMapping("/{id}/arts")
-    public ResponseEntity<List<ArtDTO>> getArtByArtistId(@PathVariable Long id) {
-        return new ResponseEntity<>(artistService.getArtByArtistId(id), HttpStatus.OK);
+    // 모든 작품 조회
+    @GetMapping("")
+    public ResponseEntity<List<Art>> getAllArt() {
+        return ResponseEntity.ok(artService.getAllArt());
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}/art")
-    public ResponseEntity<ArtDetailDTO> addArtToArtist(@PathVariable Long id, @RequestBody ArtDetailDTO artDTO) {
-        ArtDetailDTO saved = artistService.addArtForArtist(id, artDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+    // 작품 ID로 조회
+    @GetMapping("/id/{id}")
+    public ResponseEntity<ArtDTO> getIdArt(@PathVariable Long id) {
+        return ResponseEntity.ok(artService.findByIdArtId(id));
+    }
+
+
+    // 작품 수정 (UPDATE) 관리자만 가능
+    @PutMapping("/update/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<ArtDTO> updateArt(@PathVariable Long id, @RequestBody ArtUpdateDTO artUpdateDTO) {
+        return ResponseEntity.ok(artService.updateArt(id, artUpdateDTO));
     }
 }
