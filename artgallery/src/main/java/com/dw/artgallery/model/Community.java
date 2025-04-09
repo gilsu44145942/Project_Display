@@ -4,9 +4,7 @@ import com.dw.artgallery.DTO.CommunityDTO;
 import com.dw.artgallery.DTO.CommunityDetailDTO;
 import jakarta.persistence.*;
 import lombok.*;
-import org.w3c.dom.ls.LSInput;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +29,7 @@ public class Community {
     private Long likes;
 
     @Column(name = "upload_date")
-    private LocalDateTime uploadDate;
+    private LocalDateTime uploadDate= LocalDateTime.now();
 
     @Column(name="modify_date",nullable = false)
     private LocalDateTime modifyDate;
@@ -78,7 +76,6 @@ public class Community {
             drawingList1.add(data.getImgUrl());
         }
         communityDetailDTO.setDrawingList(drawingList1);
-        communityDetailDTO.setDrawingList(drawingList1);
         List<String> commentUser1 = new ArrayList<>();
         List<String> commentText1 = new ArrayList<>();
         List<LocalDateTime> creationDateList1 = new ArrayList<>();
@@ -93,6 +90,7 @@ public class Community {
 
         return communityDetailDTO;
     }
+
 
 
 }

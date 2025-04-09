@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,12 +30,13 @@ public class CommunityService {
         return communityRepository.findById(id).orElseThrow(() ->new ResourceNotFoundException("해당 ID를 가진 Community 가 존재하지 않습니다.")).ToDto();
     }
 
-    public List<CommunityDTO> getUserIDCommunity(String userid) {
-
-        List<Community> result = communityRepository.findByUser_UserId(userid);
-        if (result.isEmpty()) {
-            throw new ResourceNotFoundException("Community 를 찾을 수 없습니다.");
+    public List<CommunityDTO> getUserIDCommunity(String userId) {
+        List<Community> communities = communityRepository.findByUser_UserId(userId);
+        if (communities.isEmpty()) {
+            throw new ResourceNotFoundException("userId [" + userId + "] 에 대한 Community 를 찾을 수 없습니다.");
         }
-        return result.stream().map(Community::toDto).collect(Collectors.toList());
+        return communities.stream()
+                .map(Community::toDto)
+                .collect(Collectors.toList());
     }
 }
