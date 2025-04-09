@@ -13,18 +13,18 @@ VALUES
 ('yoonverse', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '윤의세계', '윤슬기', 'seulgi.yoon@example.com', '1997-01-29', '울산광역시 남구', '2023-12-01', 300, 'FEMALE', 'ROLE_USER');
 
 
-INSERT INTO artist (id, name, profile_img )
+INSERT INTO artist (id, name, profile_img, description, is_deleted )
 VALUES
-(1,'김하늘', 'PROFILE_IMG'),
-(2,'이준서', 'PROFILE_IMG'),
-(3,'박서연', 'PROFILE_IMG'),
-(4,'최민준', 'PROFILE_IMG'),
-(5,'정예린', 'PROFILE_IMG'),
-(6,'한도윤', 'PROFILE_IMG'),
-(7,'윤지후', 'PROFILE_IMG'),
-(8,'서하람', 'PROFILE_IMG'),
-(9,'장하늘', 'PROFILE_IMG'),
-(10,'배유진', 'PROFILE_IMG');
+(1, '김하늘', 'PROFILE_IMG', '자연을 주제로 한 서정적인 화풍을 가진 작가입니다.', 0),
+(2, '이준서', 'PROFILE_IMG', '디지털 아트와 전통 회화를 결합한 실험적 작업을 합니다.', 0),
+(3, '박서연', 'PROFILE_IMG', '인물화를 중심으로 감정을 섬세하게 표현합니다.', 0),
+(4, '최민준', 'PROFILE_IMG', '미니멀한 구성과 강렬한 색감이 특징입니다.', 1),
+(5, '정예린', 'PROFILE_IMG', '동양화 기법을 현대적으로 재해석한 작품으로 주목받습니다.', 0),
+(6, '한도윤', 'PROFILE_IMG', '추상화 작업을 통해 내면 세계를 표현합니다.', 0),
+(7, '윤지후', 'PROFILE_IMG', '몽환적인 풍경화를 그리는 아티스트입니다.', 0),
+(8, '서하람', 'PROFILE_IMG', '현대 사회를 비판적으로 다룬 설치미술로 활동합니다.', 0),
+(9, '장하늘', 'PROFILE_IMG', '빛과 그림자를 활용한 독특한 분위기의 작품을 만듭니다.', 0),
+(10,'배유진', 'PROFILE_IMG', '사운드와 영상 아트를 융합한 미디어 아티스트입니다.', 0);
 
 
 

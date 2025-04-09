@@ -38,19 +38,19 @@ public class CommunityController {
     @GetMapping("/my")
     public ResponseEntity<List<CommunityDTO>> getMyCommunity() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         if (authentication == null || !authentication.isAuthenticated()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         Object principal = authentication.getPrincipal();
         String userId;
-        if (principal instanceof User user) {
+        if (principal instanceof com.dw.artgallery.model.User user) {
             userId = user.getUserId();
-        } else if (principal instanceof String username) {
-            userId = username;
+        } else if (principal instanceof String id) {
+            userId = id;
         } else {
             throw new IllegalStateException("알 수 없는 사용자 타입: " + principal.getClass());
         }
+
         List<CommunityDTO> communities = communityService.getUserIDCommunity(userId);
         return new ResponseEntity<>(communities, HttpStatus.OK);
     }
