@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/artist")
 public class ArtistController {
-    ArtistService artistService;
+    private final ArtistService artistService;
 
     @GetMapping
     public ResponseEntity<List<ArtistDTO>> getAllArtist(){
