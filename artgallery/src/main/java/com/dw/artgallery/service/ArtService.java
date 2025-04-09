@@ -106,7 +106,8 @@ public class ArtService {
                 art.getDescription(),
                 art.getCompletionDate(),
                 art.getUploadDate(),
-                art.getArtist() != null ? art.getArtist().getName() : "Unknown"
+                art.getArtist() != null ? art.getArtist().getName() : "Unknown",
+                art.getDeleted()
         );
     }
 }

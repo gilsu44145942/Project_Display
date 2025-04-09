@@ -39,10 +39,10 @@ public class Art {
     private Artist artist;
 
     @Column(name = "is_deleted")
-    private boolean deleted=false;
+    private Boolean deleted=false;
 
 
-    public Art(String title, String imgUrl, String description, LocalDate completionDate, LocalDate uploadDate, Artist artist) {
+    public Art(String title, String imgUrl, String description, LocalDate completionDate, LocalDate uploadDate, Artist artist,Boolean deleted) {
         this.title = title;
         this.imgUrl = imgUrl;
         this.description = description;
