@@ -2,6 +2,7 @@ package com.dw.artgallery.service;
 
 import com.dw.artgallery.DTO.UserDTO;
 import com.dw.artgallery.DTO.LoginDTO;
+import com.dw.artgallery.DTO.UserGetDTO;
 import com.dw.artgallery.jwt.TokenProvider;
 import com.dw.artgallery.model.Art;
 import com.dw.artgallery.model.Authority;
@@ -15,6 +16,7 @@ import com.dw.exception.UnauthorizedUserException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -96,9 +98,11 @@ public class UserService {
         session.invalidate(); // 세션 무효화
     }
 
-    // 모든 회원 조회 (관리자만 가능)
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserGetDTO> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(this::convertToDTO) // 🔹 User → UserGetDTO 변환
+                .toList();
     }
 
 
@@ -121,20 +125,6 @@ public class UserService {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public User getCurrentUser(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
@@ -145,4 +135,19 @@ public class UserService {
         return userRepository.findById(userName)
                 .orElseThrow(() -> new InvalidRequestException("유저명을 찾을 수 없습니다."));
     }
+
+    private UserGetDTO convertToDTO(User user) {
+        return new UserGetDTO(
+                user.getUserId(),
+                user.getNickName(),
+                user.getRealName(),
+                user.getEmail(),
+                user.getBirthday(),
+                user.getAddress(),
+                user.getEnrolmentDate(),
+                user.getPoint(),
+                user.getGender()
+        );
+    }
 }
+

@@ -2,6 +2,7 @@ package com.dw.artgallery.controller;
 
 import com.dw.artgallery.DTO.LoginDTO;
 import com.dw.artgallery.DTO.UserDTO;
+import com.dw.artgallery.DTO.UserGetDTO;
 import com.dw.artgallery.jwt.TokenProvider;
 import com.dw.artgallery.model.User;
 import com.dw.artgallery.service.UserService;
@@ -69,7 +70,7 @@ public class UserController {
     //  모든 회원 조회 (관리자만 가능)
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<User>> getAllUser() {
+    public ResponseEntity<List<UserGetDTO>> getAllUser() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
@@ -93,7 +94,5 @@ public class UserController {
     public ResponseEntity<List<UserDTO>> getTopUsersByPoints() {
         return ResponseEntity.ok(userService.getTopUsersByPoints());
     }
-
-
 
 }
