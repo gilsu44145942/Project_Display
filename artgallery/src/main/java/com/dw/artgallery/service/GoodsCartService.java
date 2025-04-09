@@ -62,7 +62,7 @@ public class GoodsCartService {
             deletedCount++;
         }
 
-        return "삭제 완료: " + deletedCount + "개";
+        return "장바구니에 담긴 상품 " + deletedCount + "개를 정상적으로 삭제하였습니다.";
     }
 
 
