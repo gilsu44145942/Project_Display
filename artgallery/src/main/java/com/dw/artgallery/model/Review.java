@@ -32,13 +32,16 @@ public class Review {
     @Column(name = "created_at") // 작성일자
     private LocalDate createdAt;
 
-    public ReviewDTO toDTO() {
-        return new ReviewDTO(
-                this.getId(),
-                this.getContent(),
-                this.getCreatedAt(),
-                this.getUser().getUsername(),
-                this.getGoods().getId()
-        );
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted;
+
+    public  ReviewDTO toDto() {
+        ReviewDTO reviewDTO = new ReviewDTO();
+        reviewDTO.setText(this.text);
+        reviewDTO.setUser(this.user.getNickName());
+        reviewDTO.setCreatedAt(this.getCreatedAt());
+        return reviewDTO;
     }
+
+
 }

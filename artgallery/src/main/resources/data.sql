@@ -291,16 +291,16 @@ VALUES
 (7, 7, 1, 4000),
 (8, 8, 2, 6500);
 
-INSERT INTO review ( text, user_id, goods_id, created_at)
+INSERT INTO review ( text, user_id, goods_id, created_at, is_deleted)
 VALUES
-('포장이 꼼꼼하고 상품도 너무 예뻐요. 다음에도 또 구매하고 싶어요!', 'catncanvas', 1, '2025-03-22'),
-('생각보다 사이즈가 작았지만 디자인은 만족스럽습니다.', 'yoonverse', 3, '2025-02-10'),
-('퀄리티가 정말 좋아요. 선물용으로도 추천합니다.', 'galleryqueen', 2, '2025-03-05'),
-('배송이 조금 느렸지만 제품은 마음에 들어요.', 'yoonverse', 5, '2025-01-28'),
-('색감이 사진이랑 거의 동일해서 만족스러웠습니다.', 'catncanvas', 6, '2025-04-02'),
-('일주일 정도 쓰고 있는데 내구성도 괜찮고 좋아요.', 'galleryqueen', 4, '2025-03-14'),
-('기대 이상으로 만족했어요. 다음에 다른 굿즈도 살게요!', 'yoonverse', 7, '2025-04-05'),
-('아기자기하고 감성적인 디자인이 너무 마음에 들어요.', 'catncanvas', 8, '2025-02-22');
+('포장이 꼼꼼하고 상품도 너무 예뻐요. 다음에도 또 구매하고 싶어요!', 'catncanvas', 1, '2025-03-22', false),
+('생각보다 사이즈가 작았지만 디자인은 만족스럽습니다.', 'yoonverse', 3, '2025-02-10', false),
+('퀄리티가 정말 좋아요. 선물용으로도 추천합니다.', 'galleryqueen', 2, '2025-03-05', false),
+('배송이 조금 느렸지만 제품은 마음에 들어요.', 'yoonverse', 5, '2025-01-28', false),
+('색감이 사진이랑 거의 동일해서 만족스러웠습니다.', 'catncanvas', 6, '2025-04-02', false),
+('일주일 정도 쓰고 있는데 내구성도 괜찮고 좋아요.', 'galleryqueen', 4, '2025-03-14', false),
+('기대 이상으로 만족했어요. 다음에 다른 굿즈도 살게요!', 'yoonverse', 7, '2025-04-05', false),
+('아기자기하고 감성적인 디자인이 너무 마음에 들어요.', 'catncanvas', 8, '2025-02-22', false);
 
 INSERT INTO ticket ( count, select_date, artist_gallery_id, purchase_date)
 VALUES
