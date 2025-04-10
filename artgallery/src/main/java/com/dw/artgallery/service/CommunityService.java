@@ -19,15 +19,12 @@ import com.dw.artgallery.repository.UserRepository;
 import com.dw.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
-import static java.awt.SystemColor.text;
-
 
 @Service
 public class CommunityService {

@@ -19,31 +19,38 @@ public class ArtistGalleryController {
     @Autowired
     ArtistGalleryService artistGalleryService;
 
+    // ArtistGallery 전체 조회
     @GetMapping
     public ResponseEntity<List<ArtistGalleryDTO>> getAllArtistGallery (){
         return new ResponseEntity<>(artistGalleryService.getAllArtistGallery(), HttpStatus.OK);
     }
 
+    // ArtistGallery id로 디테일 조회
     @GetMapping("/id/{id}")
     public ResponseEntity<ArtistGalleryDetailDTO> getIdArtistGallery (@PathVariable Long id){
         return new ResponseEntity<>(artistGalleryService.getIdArtistGallery(id), HttpStatus.OK);
     }
 
+    // ArtistGallery 제목으로 리스트 조회
     @GetMapping("/title/{title}")
     public ResponseEntity<List<ArtistGalleryDTO>> getTitleArtistGallery (@PathVariable String title) {
         return new ResponseEntity<>(artistGalleryService.getTitleArtistGallery(title),HttpStatus.OK);
     }
 
+    // ArtistGallery 현재 전시 조회
     @GetMapping("/now")
     public ResponseEntity<List<ArtistGalleryDTO>> getNowArtistGallery () {
         return new ResponseEntity<>(artistGalleryService.getNowArtistGallery(), HttpStatus.OK);
     }
 
+    // ArtistGallery 과거 전지 조회
     @GetMapping("/past")
     public ResponseEntity<List<ArtistGalleryDTO>> getPastArtistGallery () {
         return new ResponseEntity<>(artistGalleryService.getPastArtistGallery(), HttpStatus.OK);
     }
 
+
+    // ArtistGallery 예정 전시 조회
     @GetMapping("/expected")
     public ResponseEntity<List<ArtistGalleryDTO>> getExpectedArtistGallery () {
         return new ResponseEntity<>(artistGalleryService.getExpectedArtistGallery(), HttpStatus.OK);

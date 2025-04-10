@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface DrawingRepository extends JpaRepository<Drawing, Long> {
-    List<Drawing> findByUserGalleryId(Long userGalleryId);
+    List<Drawing> findByUserAndIsDeletedFalse(User user);
 
 
 }

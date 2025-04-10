@@ -29,11 +29,13 @@ public class CommunityController {
     @Autowired
     CommunityService communityService;
 
+    // Community 전체 조회
     @GetMapping
     public ResponseEntity<List<CommunityDTO>> getAllCommunity() {
         return new ResponseEntity<>(communityService.getAllCommunity(), HttpStatus.OK);
     }
 
+    // Community
     @GetMapping("/id/{id}")
     public ResponseEntity<CommunityDTO> getIdCommunity(@PathVariable Long id){
         return new ResponseEntity<>(communityService.getIdCommunity(id),HttpStatus.OK);
