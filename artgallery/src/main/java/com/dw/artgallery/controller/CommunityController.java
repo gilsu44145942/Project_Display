@@ -35,6 +35,23 @@ public class CommunityController {
         return new ResponseEntity<>(communityService.getAllCommunity(), HttpStatus.OK);
     }
 
+    // Community 업로드일 기준 최신 순 조회
+    @GetMapping("/desc")
+    public ResponseEntity<List<CommunityDTO>> getDescCommunity() {
+        return new ResponseEntity<>(communityService.getDescCommunity(), HttpStatus.OK);
+    }
+    // Community 업로드일 기준 오래된 Community 순 조회
+    @GetMapping("/asc")
+    public ResponseEntity<List<CommunityDTO>> getAscCommunity() {
+        return new ResponseEntity<>(communityService.getAscCommunity(), HttpStatus.OK);
+    }
+
+    // Community 좋아요 많은 순 조회
+    @GetMapping("/popular")
+    public ResponseEntity<List<CommunityDTO>> getPopularCommunities() {
+        return new ResponseEntity<>(communityService.getPopularCommunities(), HttpStatus.OK);
+    }
+
     // Community id로 조회
     @GetMapping("/id/{id}")
     public ResponseEntity<CommunityDTO> getIdCommunity(@PathVariable Long id){
@@ -47,7 +64,7 @@ public class CommunityController {
         return new ResponseEntity<>(communityService.getIdCommunities(id), HttpStatus.OK);
     }
 
-    // Community userId로 디테일 조회
+    // Community userId로  조회
     @GetMapping("/userid/{userid}")
     public ResponseEntity<List<CommunityDTO>> getUserIDCommunity(@PathVariable String userid) {
         return new ResponseEntity<>(communityService.getUserIDCommunity(userid), HttpStatus.OK);

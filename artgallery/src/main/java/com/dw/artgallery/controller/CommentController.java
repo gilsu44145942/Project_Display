@@ -39,7 +39,7 @@ public class CommentController {
         return ResponseEntity.ok("댓글이 삭제되었습니다.");
     }
 
-    // Comment commentId 로 논리적 삭제  
+    // Comment commentId 로 논리적 삭제
     @PostMapping("/deleted/{commentId}")
     public ResponseEntity<String> deletedComment(@PathVariable Long commentId) {
         return new ResponseEntity<>(commentService.deletedComment(commentId), HttpStatus.OK);

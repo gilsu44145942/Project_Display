@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CommunityService {
@@ -38,26 +39,47 @@ public class CommunityService {
     DrawingRepository drawingRepository;
 
     public List<CommunityDTO> getAllCommunity() {
-        return communityRepository.findAllByIsDeletedFalse().stream()
+        return communityRepository.findAllNotDeleted().stream()
                 .map(Community::toDto)
                 .toList();
     }
 
+    public List<CommunityDTO> getDescCommunity() {
+        return communityRepository.findRecentCommunities()
+                .stream()
+                .map(Community::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<CommunityDTO> getAscCommunity() {
+        return communityRepository.findOldestCommunities()
+                .stream()
+                .map(Community::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<CommunityDTO> getPopularCommunities() {
+        return communityRepository.findCommunitiesByLikesDesc()
+                .stream()
+                .map(Community::toDto)
+                .collect(Collectors.toList());
+    }
+
 
     public CommunityDTO getIdCommunity(Long id) {
-        return communityRepository.findByIdAndIsDeletedFalse(id)
+        return communityRepository.findByIdNotDeleted(id)
                 .orElseThrow(() -> new ResourceNotFoundException("존재하지 않거나 삭제된 커뮤니티입니다."))
                 .toDto();
     }
 
     public CommunityDetailDTO getIdCommunities(Long id) {
-        return communityRepository.findByIdAndIsDeletedFalse(id)
+        return communityRepository.findByIdNotDeleted(id)
                 .orElseThrow(() -> new ResourceNotFoundException("존재하지 않거나 삭제된 커뮤니티입니다."))
                 .ToDto();
     }
 
     public List<CommunityDTO> getUserIDCommunity(String userId) {
-        List<Community> communities = communityRepository.findByUser_UserIdAndIsDeletedFalse(userId);
+        List<Community> communities = communityRepository.findByUserIdNotDeleted(userId);
         if (communities.isEmpty()) {
             throw new ResourceNotFoundException("해당 유저의 커뮤니티가 없습니다.");
         }
