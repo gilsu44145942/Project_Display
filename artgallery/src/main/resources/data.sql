@@ -3,7 +3,8 @@ INSERT INTO authority (authority_name) VALUES ('ROLE_USER');
 
 INSERT INTO user ( user_id, password, nickname, real_name, email, birthday, address, enrolment_date, point,gender,user_authority)
 VALUES
-('admin01', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '관리자', '관리자', 'admin@gallery.com', '1985-05-05', '서울특별시 강남구', '2023-09-20', 9999, 'MALE', 'ROLE_ADMIN'),
+('admin', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '관리자', '관리자', 'admin@gallery.com', '1985-05-05', '서울특별시 강남구', '2023-09-20', 9999, 'MALE', 'ROLE_ADMIN'),
+('steve12', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '스티브', '스티브', 'steve12.yoon@example.com', '1997-01-29', '울산광역시 남구', '2023-12-01', 300, 'FEMALE', 'ROLE_USER'),
 ('artlover01', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '몽환토끼', '김은지', 'eunji.kim@example.com', '1992-06-15', '서울특별시 마포구', '2023-11-02', 1200, 'FEMALE', 'ROLE_USER'),
 ('drawmaster', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '선과빛', '이재훈', 'jaehoon.lee@example.com', '1987-03-21', '부산광역시 해운대구', '2024-01-10', 980, 'MALE', 'ROLE_USER'),
 ('catncanvas', '$2b$12$A0kgVpplgbH3ZZ1E89441eacUXljTTt7nP8I3RdLtW0P6/CXdEnCm', '고양이화가', '정다혜', 'dahye.jung@example.com', '1995-09-12', '경기도 성남시', '2023-12-25', 1500, 'FEMALE', 'ROLE_USER'),
