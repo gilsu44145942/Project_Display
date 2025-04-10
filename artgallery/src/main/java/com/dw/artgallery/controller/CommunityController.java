@@ -1,10 +1,12 @@
 package com.dw.artgallery.controller;
 
 
+import com.dw.artgallery.DTO.CommunityAddDTO;
 import com.dw.artgallery.DTO.CommunityDTO;
 import com.dw.artgallery.DTO.CommunityDetailDTO;
 
 import com.dw.artgallery.DTO.CommunityUpdateDTO;
+import com.dw.artgallery.model.Community;
 import com.dw.artgallery.model.User;
 import com.dw.artgallery.service.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,13 @@ public class CommunityController {
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<CommunityDetailDTO> getIdCommunity(@PathVariable Long id) {
-        return new ResponseEntity<>(communityService.getIdCommunity(id), HttpStatus.OK);
+    public ResponseEntity<CommunityDTO> getIdCommunity(@PathVariable Long id){
+        return new ResponseEntity<>(communityService.getIdCommunity(id),HttpStatus.OK);
+    }
+
+    @GetMapping("/detail/id/{id}")
+    public ResponseEntity<CommunityDetailDTO> getIdCommunities(@PathVariable Long id) {
+        return new ResponseEntity<>(communityService.getIdCommunities(id), HttpStatus.OK);
     }
 
     @GetMapping("/userid/{userid}")
@@ -68,6 +75,13 @@ public class CommunityController {
         return new ResponseEntity<>(communityService.toggleLike(id, user), HttpStatus.OK);
     }
 
+    @PostMapping("/add")
+    public ResponseEntity<CommunityDTO> addCommunity(@RequestBody CommunityAddDTO dto,
+                                                        @AuthenticationPrincipal User user) {
+        Community created = communityService.addCommunity(dto, user);
+        return new ResponseEntity<>(created.toDto(), HttpStatus.CREATED);
+    }
+
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateCommunity(@PathVariable Long id,
@@ -82,11 +96,6 @@ public class CommunityController {
                                                   @AuthenticationPrincipal User user) {
         return new ResponseEntity<>(communityService.deleteCommunity(id, user), HttpStatus.OK);
     }
-
-
-
-
-
 
 
 }

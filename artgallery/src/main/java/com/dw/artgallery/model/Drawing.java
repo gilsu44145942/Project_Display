@@ -35,6 +35,12 @@ public class Drawing {
     @Column(name = "is_complete")
     private boolean isComplete;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
+
     @ManyToMany(mappedBy = "drawingList")
     private List<Community> communityList = new ArrayList<>();
 

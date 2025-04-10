@@ -3,6 +3,7 @@ package com.dw.artgallery.service;
 
 
 
+import com.dw.artgallery.DTO.CommunityAddDTO;
 import com.dw.artgallery.DTO.CommunityDTO;
 import com.dw.artgallery.DTO.CommunityDetailDTO;
 
@@ -17,13 +18,16 @@ import com.dw.artgallery.repository.DrawingRepository;
 import com.dw.artgallery.repository.UserRepository;
 import com.dw.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
+import static java.awt.SystemColor.text;
+
 
 @Service
 public class CommunityService {
@@ -42,7 +46,14 @@ public class CommunityService {
                 .toList();
     }
 
-    public CommunityDetailDTO getIdCommunity(Long id) {
+
+    public CommunityDTO getIdCommunity(Long id) {
+        return communityRepository.findByIdAndIsDeletedFalse(id)
+                .orElseThrow(() -> new ResourceNotFoundException("존재하지 않거나 삭제된 커뮤니티입니다."))
+                .toDto();
+    }
+
+    public CommunityDetailDTO getIdCommunities(Long id) {
         return communityRepository.findByIdAndIsDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("존재하지 않거나 삭제된 커뮤니티입니다."))
                 .ToDto();
@@ -78,6 +89,26 @@ public class CommunityService {
         communityRepository.save(community);
         return "좋아요 토글 완료!";
     }
+
+
+
+        public Community addCommunity(CommunityAddDTO dto, User user) {
+            List<Drawing> userDrawings = drawingRepository.findAllById(dto.getDrawingIds());
+            for (Drawing d : userDrawings) {
+                if (!d.getUser().getUserId().equals(user.getUserId())) {
+                    throw new IllegalArgumentException("본인이 소유한 드로잉만 첨부할 수 있습니다.");
+                }
+            }
+            Community community = new Community();
+            community.setText(dto.getText());
+            community.setDrawingList(userDrawings);
+            community.setUser(user);
+            community.setModifyDate(LocalDateTime.now());
+            community.setIsDeleted(false);
+            community.setLikes(0L);
+
+            return communityRepository.save(community);
+        }
 
     public String updateCommunity(Long id, User user, CommunityUpdateDTO dto) {
         Community community = communityRepository.findById(id)

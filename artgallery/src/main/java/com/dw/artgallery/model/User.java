@@ -10,8 +10,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -53,6 +55,8 @@ public class User implements UserDetails {
     @Column(name="gender")
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+
 
     @ManyToOne
     @JoinColumn(name = "user_authority")
