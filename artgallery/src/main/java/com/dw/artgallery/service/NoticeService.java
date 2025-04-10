@@ -3,7 +3,6 @@ package com.dw.artgallery.service;
 import com.dw.artgallery.DTO.NoticeDTO;
 import com.dw.artgallery.model.Notice;
 import com.dw.artgallery.repository.NoticeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,11 +14,14 @@ import java.util.stream.Collectors;
 @Service
 public class NoticeService {
 
-    @Autowired
-    private NoticeRepository noticeRepository;
+    private final NoticeRepository noticeRepository;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public NoticeService(NoticeRepository noticeRepository, UserService userService) {
+        this.noticeRepository = noticeRepository;
+        this.userService = userService;
+    }
 
     // 모든 공지 조회
     public List<NoticeDTO> getAllNotices() {

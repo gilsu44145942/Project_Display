@@ -17,7 +17,6 @@ public class NoticeController {
     private NoticeService noticeService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public List<NoticeDTO> getAllNotices() {
         return noticeService.getAllNotices();
     }
@@ -33,11 +32,13 @@ public class NoticeController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public NoticeDTO createOrUpdateNotice(@RequestBody NoticeDTO dto) {
         return noticeService.saveNotice(dto);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteNotice(@PathVariable Long id) {
         return noticeService.deleteNotice(id);
     }

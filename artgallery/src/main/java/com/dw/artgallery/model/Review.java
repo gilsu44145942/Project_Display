@@ -1,5 +1,6 @@
 package com.dw.artgallery.model;
 
+import com.dw.artgallery.DTO.ReviewDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,4 +31,14 @@ public class Review {
 
     @Column(name = "created_at") // 작성일자
     private LocalDate createdAt;
+
+    public ReviewDTO toDTO() {
+        return new ReviewDTO(
+                this.getId(),
+                this.getContent(),
+                this.getCreatedAt(),
+                this.getUser().getUsername(),
+                this.getGoods().getId()
+        );
+    }
 }
