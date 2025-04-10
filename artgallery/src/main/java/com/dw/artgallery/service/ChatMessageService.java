@@ -1,11 +1,11 @@
 package com.dw.artgallery.service;
 
-import com.dw.artgallery.repository.ChattingRepository;
+import com.dw.artgallery.repository.ChatMessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ChattingService {
+public class ChatMessageService {
     @Autowired
-    ChattingRepository chattingRepository;
+    ChatMessageRepository chatMessageRepository;
 }

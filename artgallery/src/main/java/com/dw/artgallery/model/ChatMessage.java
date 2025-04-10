@@ -11,16 +11,20 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @Entity
-@Table(name="chatting")
-public class Chatting {
+@Table(name="ChatMessage")
+public class ChatMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "chat_room_id", nullable = false)
+    private ChatRoom chatRoom;
+
+    @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    private User sender;
 
     @Column(name="text",nullable = false)
     private String text;
@@ -28,7 +32,7 @@ public class Chatting {
     @Column(name="img")
     private String img;
 
-    @Column(name="date",nullable = false)
-    private LocalDateTime data;
+    @Column(name="timestamp",nullable = false)
+    private LocalDateTime timestamp;
 
 }

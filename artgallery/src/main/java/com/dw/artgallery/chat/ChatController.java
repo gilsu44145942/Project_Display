@@ -1,5 +1,6 @@
 package com.dw.artgallery.chat;
 
+import com.dw.artgallery.DTO.ChatMessageDTO;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -11,21 +12,21 @@ import org.springframework.stereotype.Controller;
 
         @MessageMapping("/chat.sendMessage")
         @SendTo("/topic/public") // 구독명이 SendTo
-        public ChatMessage sendMessage(
-                @Payload ChatMessage chatMessage
+        public ChatMessageDTO sendMessage(
+                @Payload ChatMessageDTO chatMessageDTO
         ) {
-            return chatMessage;
+            return chatMessageDTO;
         }
 
         @MessageMapping("/chat.addUser") // 입장
         @SendTo("/topic/public")
-        public ChatMessage addUser(
-                @Payload ChatMessage chatMessage,
+        public ChatMessageDTO addUser(
+                @Payload ChatMessageDTO chatMessageDTO,
                 SimpMessageHeaderAccessor headerAccessor
         ) {
             // Add username in web socket session
             // 연결종료 시 누구의 연결이 종료된 것인지 확인하기 위해 저장
-            headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-            return chatMessage;
+            headerAccessor.getSessionAttributes().put("username", chatMessageDTO.getSender());
+            return chatMessageDTO;
         }
     }

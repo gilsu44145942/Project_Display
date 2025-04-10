@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "artist")
 public class Artist {
@@ -40,6 +39,11 @@ public class Artist {
 
     @ManyToMany(mappedBy = "artistList")
     private List<ArtistGallery> artistGalleryList = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private User user;
+
 
 
 }

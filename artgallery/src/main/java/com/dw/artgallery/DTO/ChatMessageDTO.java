@@ -1,5 +1,6 @@
-package com.dw.artgallery.chat;
+package com.dw.artgallery.DTO;
 
+import com.dw.artgallery.chat.MessageType;
 import lombok.*;
 
 @Getter
@@ -7,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ChatMessage {
+public class ChatMessageDTO {
     private MessageType type;
     private String content;
     private String sender;

@@ -1,6 +1,6 @@
 package com.dw.artgallery.config;
 
-import com.dw.artgallery.chat.ChatMessage;
+import com.dw.artgallery.DTO.ChatMessageDTO;
 import com.dw.artgallery.chat.MessageType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ public class WebSocketEventListener {
         String username = (String) headerAccessor.getSessionAttributes().get("username");
         if (username != null) {
             log.info("user disconnected: {}", username);
-            var chatMessage = ChatMessage.builder()
+            var chatMessage = ChatMessageDTO.builder()
                     .type(MessageType.LEAVE)
                     .sender(username)
                     .build();

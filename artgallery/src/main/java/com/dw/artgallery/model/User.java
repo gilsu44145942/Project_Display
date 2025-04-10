@@ -56,11 +56,15 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-
-
     @ManyToOne
     @JoinColumn(name = "user_authority")
     private Authority authority;
+
+    @Column(name = "is_artist", nullable = false)
+    private boolean isArtist = false;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Artist artistProfile;
 
 
 
