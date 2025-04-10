@@ -269,16 +269,27 @@ VALUES
 ('이벤트 당첨자 발표', '3월에 진행된 "나의 감성 드로잉" 이벤트 당첨자를 발표합니다. 자세한 사항은 이벤트 게시판을 확인해주세요.', '2025-03-31'),
 ('봄맞이 굿즈 할인 이벤트', '4월 한 달간 일부 굿즈 상품이 최대 30% 할인됩니다. 놓치지 마세요!', '2025-04-04');
 
-INSERT INTO purchase (goods_id,user_id, amount, total_price, purchase_date)
+INSERT INTO purchase (id, user_id, total_price, purchase_date)
 VALUES
-( 1,'catncanvas',1,12000, '2025-03-21'),
-( 2, 'yoonverse',2,19000, '2025-02-11'),
-( 3,'galleryqueen',3,18000, '2025-04-01'),
-( 4,'catncanvas',1,10000, '2025-01-30'),
-( 5, 'galleryqueen',1,5000,'2025-03-10'),
-( 6,'catncanvas',2,30000, '2025-03-18'),
-( 7, 'yoonverse',1,4000,'2025-02-27'),
-( 8,'catncanvas',1,13000, '2025-04-03');
+( 1,'catncanvas',12000, '2025-03-21'),
+( 2, 'yoonverse',19000, '2025-02-11'),
+( 3,'galleryqueen',18000, '2025-04-01'),
+( 4,'catncanvas',10000, '2025-01-30'),
+( 5, 'galleryqueen',5000,'2025-03-10'),
+( 6,'catncanvas',30000, '2025-03-18'),
+( 7, 'yoonverse',4000,'2025-02-27'),
+( 8,'catncanvas',13000, '2025-04-03');
+
+INSERT INTO purchase_goods (purchase_id, goods_id, quantity, price)
+VALUES
+(1, 1, 1, 12000),
+(2, 2, 2, 9500),
+(3, 3, 3, 6000),
+(4, 4, 1, 10000),
+(5, 5, 1, 5000),
+(6, 6, 3, 10000),
+(7, 7, 1, 4000),
+(8, 8, 2, 6500);
 
 INSERT INTO review ( text, user_id, goods_id, created_at)
 VALUES
