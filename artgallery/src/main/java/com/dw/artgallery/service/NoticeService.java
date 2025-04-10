@@ -2,9 +2,7 @@ package com.dw.artgallery.service;
 
 import com.dw.artgallery.DTO.NoticeDTO;
 import com.dw.artgallery.model.Notice;
-import com.dw.artgallery.model.User;
 import com.dw.artgallery.repository.NoticeRepository;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,6 +21,7 @@ public class NoticeService {
     @Autowired
     private UserService userService;
 
+    // 모든 공지 조회
     public List<NoticeDTO> getAllNotices() {
         return noticeRepository.findAll()
                 .stream()
@@ -30,12 +29,14 @@ public class NoticeService {
                 .collect(Collectors.toList());
     }
 
+    // 특정 공지 조회
     public NoticeDTO getNoticeById(Long id) {
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "해당 ID의 공지를 찾을 수 없습니다."));
         return convertToDTO(notice);
     }
 
+    // 제목 조회
     public List<NoticeDTO> getNoticesByTitle(String title) {
         return noticeRepository.findByNoticetitleContaining(title)
                 .stream()
@@ -43,12 +44,7 @@ public class NoticeService {
                 .collect(Collectors.toList());
     }
 
-    public NoticeDTO saveNotice(NoticeDTO dto, HttpServletRequest request) {
-        User currentUser = userService.getCurrentUser(request);
-        if (!"ADMIN".equals(currentUser.getAuthority().getAuthorityName())) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "공지 작성은 관리자만 가능합니다.");
-        }
-
+    public NoticeDTO saveNotice(NoticeDTO dto) {
         if (dto.getNoticetitle() == null || dto.getContent() == null) {
             throw new IllegalArgumentException("제목과 내용을 모두 작성해주세요.");
         }
@@ -62,12 +58,8 @@ public class NoticeService {
         return convertToDTO(noticeRepository.save(notice));
     }
 
-    public String deleteNotice(Long id, HttpServletRequest request) {
-        User currentUser = userService.getCurrentUser(request);
-        if (!"ADMIN".equals(currentUser.getAuthority().getAuthorityName())) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "공지 삭제는 관리자만 가능합니다.");
-        }
-
+    // 삭제
+    public String deleteNotice(Long id) {
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "삭제할 공지를 찾을 수 없습니다."));
 

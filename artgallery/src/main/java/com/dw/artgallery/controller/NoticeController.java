@@ -4,6 +4,7 @@ import com.dw.artgallery.DTO.NoticeDTO;
 import com.dw.artgallery.service.NoticeService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class NoticeController {
     private NoticeService noticeService;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<NoticeDTO> getAllNotices() {
         return noticeService.getAllNotices();
     }
@@ -31,12 +33,12 @@ public class NoticeController {
     }
 
     @PostMapping
-    public NoticeDTO createOrUpdateNotice(@RequestBody NoticeDTO dto, HttpServletRequest request) {
-        return noticeService.saveNotice(dto, request);
+    public NoticeDTO createOrUpdateNotice(@RequestBody NoticeDTO dto) {
+        return noticeService.saveNotice(dto);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteNotice(@PathVariable Long id, HttpServletRequest request) {
-        return noticeService.deleteNotice(id, request);
+    public String deleteNotice(@PathVariable Long id) {
+        return noticeService.deleteNotice(id);
     }
 }

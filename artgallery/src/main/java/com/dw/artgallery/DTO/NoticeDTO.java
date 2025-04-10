@@ -9,10 +9,8 @@ public class NoticeDTO {
     private String noticetitle;
     private String content;
 
-    // 기본 생성자 (이게 없어서 오류난 거예요)
     public NoticeDTO() {}
 
-    // 전체 필드 생성자 (이건 이미 있던 거)
     public NoticeDTO(Long id, String noticetitle, String content) {
         this.id = id;
         this.noticetitle = noticetitle;
