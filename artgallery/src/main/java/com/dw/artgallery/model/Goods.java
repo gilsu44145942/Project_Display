@@ -30,7 +30,7 @@ public class Goods {
     private String description;
 
     @Column(name="price",nullable = false)
-    private double price;
+    private int price;
 
     @Column(name="stock",nullable = false)
     private int stock;

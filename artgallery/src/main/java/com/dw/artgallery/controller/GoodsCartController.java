@@ -42,7 +42,7 @@ public class GoodsCartController {
 
     @PreAuthorize("hasRole('USER')")
     @DeleteMapping
-    public ResponseEntity<String> deleteGoodsCart(@RequestBody List<Long> ids, Authentication auth) {
-        return new ResponseEntity<>(goodsCartService.deleteGoodsCartByIds(ids, auth.getName()),HttpStatus.OK);
+    public ResponseEntity<String> deleteGoodsCart(@RequestBody List<Long> ids, Authentication authentication) {
+        return new ResponseEntity<>(goodsCartService.deleteGoodsCartByIds(ids, authentication.getName()),HttpStatus.OK);
     }
 }

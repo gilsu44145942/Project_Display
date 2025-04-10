@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name="purchase")
 public class Purchase {
@@ -21,22 +20,15 @@ public class Purchase {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="goods_id")
-    private Goods goods;
-
-    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "amount", nullable = false)
-    private int amount;
-
     @Column(name = "total_price", nullable = false)
-    private double totalPrice;
+    private int totalPrice;
 
     @Column(name="purchase_date",nullable = false)
     private LocalDate purchaseDate;
 
-
-
+    @OneToMany(mappedBy = "purchase" , cascade = CascadeType.ALL)
+    private List<PurchaseGoods> purchaseGoodsList = new ArrayList<>();
 }
