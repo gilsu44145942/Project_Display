@@ -35,22 +35,25 @@ public class CommunityController {
         return new ResponseEntity<>(communityService.getAllCommunity(), HttpStatus.OK);
     }
 
-    // Community
+    // Community id로 조회
     @GetMapping("/id/{id}")
     public ResponseEntity<CommunityDTO> getIdCommunity(@PathVariable Long id){
         return new ResponseEntity<>(communityService.getIdCommunity(id),HttpStatus.OK);
     }
 
+    // Community id로 디테일 조회
     @GetMapping("/detail/id/{id}")
     public ResponseEntity<CommunityDetailDTO> getIdCommunities(@PathVariable Long id) {
         return new ResponseEntity<>(communityService.getIdCommunities(id), HttpStatus.OK);
     }
 
+    // Community userId로 디테일 조회
     @GetMapping("/userid/{userid}")
     public ResponseEntity<List<CommunityDTO>> getUserIDCommunity(@PathVariable String userid) {
         return new ResponseEntity<>(communityService.getUserIDCommunity(userid), HttpStatus.OK);
     }
 
+    // 로그인한 회원의 Community 조회
     @GetMapping("/my")
     public ResponseEntity<List<CommunityDTO>> getMyCommunity() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -71,12 +74,15 @@ public class CommunityController {
     }
 
 
+
+    // Community id로 좋아요 기능 다시 누르면 좋아요 취소
     @PostMapping("/like/{id}")
     public ResponseEntity<String> toggleLike(@PathVariable Long id,
                                              @AuthenticationPrincipal User user) {
         return new ResponseEntity<>(communityService.toggleLike(id, user), HttpStatus.OK);
     }
 
+    // Community 추가 기능
     @PostMapping("/add")
     public ResponseEntity<CommunityDTO> addCommunity(@RequestBody CommunityAddDTO dto,
                                                         @AuthenticationPrincipal User user) {
@@ -85,6 +91,7 @@ public class CommunityController {
     }
 
 
+    // Community id로 수정
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateCommunity(@PathVariable Long id,
                                                   @RequestBody CommunityUpdateDTO updateDTO,
@@ -92,7 +99,7 @@ public class CommunityController {
         return new ResponseEntity<>(communityService.updateCommunity(id, user, updateDTO), HttpStatus.OK);
     }
 
-
+    // Community id로 논리적 삭제
     @PostMapping("/delete/{id}")
     public ResponseEntity<String> deleteCommunity(@PathVariable Long id,
                                                   @AuthenticationPrincipal User user) {
