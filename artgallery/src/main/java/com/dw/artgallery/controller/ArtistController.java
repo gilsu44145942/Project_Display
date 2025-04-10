@@ -1,14 +1,12 @@
 package com.dw.artgallery.controller;
 
-import com.dw.artgallery.DTO.ArtDTO;
-import com.dw.artgallery.DTO.ArtDetailDTO;
+
 import com.dw.artgallery.DTO.ArtistDTO;
 import com.dw.artgallery.service.ArtistService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
