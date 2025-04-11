@@ -3,7 +3,7 @@ package com.dw.artgallery.controller;
 import com.dw.artgallery.DTO.GoodsCartDTO;
 import com.dw.artgallery.service.GoodsCartService;
 import com.dw.artgallery.service.GoodsService;
-import com.dw.exception.UnauthorizedUserException;
+import com.dw.artgallery.exception.UnauthorizedUserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

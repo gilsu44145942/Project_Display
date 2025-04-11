@@ -1,4 +1,4 @@
-package com.dw.exception;
+package com.dw.artgallery.exception;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

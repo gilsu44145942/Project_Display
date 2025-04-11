@@ -1,4 +1,4 @@
-package com.dw.exception;
+package com.dw.artgallery.exception;
 
 public class ResourceAlreadyExistException extends RuntimeException {
     public ResourceAlreadyExistException(String message) {

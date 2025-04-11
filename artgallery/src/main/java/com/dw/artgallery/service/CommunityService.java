@@ -16,7 +16,7 @@ import com.dw.artgallery.repository.CommunityLikeRepository;
 import com.dw.artgallery.repository.CommunityRepository;
 import com.dw.artgallery.repository.DrawingRepository;
 import com.dw.artgallery.repository.UserRepository;
-import com.dw.exception.ResourceNotFoundException;
+import com.dw.artgallery.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 

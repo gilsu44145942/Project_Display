@@ -4,12 +4,11 @@ import com.dw.artgallery.DTO.GoodsDTO;
 import com.dw.artgallery.enums.SortOrder;
 import com.dw.artgallery.model.Goods;
 import com.dw.artgallery.repository.GoodsRepository;
-import com.dw.exception.ResourceNotFoundException;
+import com.dw.artgallery.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class GoodsService {

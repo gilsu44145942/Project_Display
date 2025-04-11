@@ -7,11 +7,9 @@ import com.dw.artgallery.model.User;
 import com.dw.artgallery.repository.GoodsCartRepository;
 import com.dw.artgallery.repository.GoodsRepository;
 import com.dw.artgallery.repository.UserRepository;
-import com.dw.exception.ResourceNotFoundException;
-import com.dw.exception.UnauthorizedUserException;
+import com.dw.artgallery.exception.ResourceNotFoundException;
+import com.dw.artgallery.exception.UnauthorizedUserException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

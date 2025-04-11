@@ -3,7 +3,7 @@ package com.dw.artgallery.service;
 import com.dw.artgallery.DTO.TicketDTO;
 import com.dw.artgallery.model.Ticket;
 import com.dw.artgallery.repository.TicketRepository;
-import com.dw.exception.ResourceNotFoundException;
+import com.dw.artgallery.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

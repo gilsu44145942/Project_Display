@@ -1,13 +1,10 @@
 package com.dw.artgallery.service;
 
-import com.dw.artgallery.DTO.ArtistGalleryDTO;
-import com.dw.artgallery.DTO.ArtistGalleryDetailDTO;
 import com.dw.artgallery.DTO.UserGalleryDTO;
 import com.dw.artgallery.DTO.UserGalleryDetailDTO;
-import com.dw.artgallery.model.ArtistGallery;
 import com.dw.artgallery.model.UserGallery;
 import com.dw.artgallery.repository.UserGalleryRepository;
-import com.dw.exception.ResourceNotFoundException;
+import com.dw.artgallery.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

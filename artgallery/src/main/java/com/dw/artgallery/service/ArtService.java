@@ -7,10 +7,9 @@ import com.dw.artgallery.model.Art;
 import com.dw.artgallery.model.Artist;
 import com.dw.artgallery.repository.ArtRepository;
 import com.dw.artgallery.repository.ArtistRepository;
-import com.dw.exception.ResourceNotFoundException;
+import com.dw.artgallery.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

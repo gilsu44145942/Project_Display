@@ -1,7 +1,6 @@
 package com.dw.artgallery.service;
 
 import com.dw.artgallery.DTO.GoodsCartDTO;
-import com.dw.artgallery.DTO.PurchaseGoodsDTO;
 import com.dw.artgallery.DTO.PurchaseResponseDTO;
 import com.dw.artgallery.DTO.PurchaseSummaryDTO;
 import com.dw.artgallery.model.Goods;
@@ -12,13 +11,9 @@ import com.dw.artgallery.repository.GoodsRepository;
 import com.dw.artgallery.repository.PurchaseGoodsRepository;
 import com.dw.artgallery.repository.PurchaseRepository;
 import com.dw.artgallery.repository.UserRepository;
-import com.dw.exception.PermissionDeniedException;
-import com.dw.exception.ResourceNotFoundException;
-import com.dw.exception.UnauthorizedUserException;
+import com.dw.artgallery.exception.PermissionDeniedException;
+import com.dw.artgallery.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
