@@ -17,4 +17,5 @@ public class UserGalleryDTO {
     private String description;
     private LocalDate startDate;
     private LocalDate endDate;
+    
 }
