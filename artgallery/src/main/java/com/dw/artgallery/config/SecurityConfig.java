@@ -2,6 +2,7 @@ package com.dw.artgallery.config;
 
 import com.dw.artgallery.jwt.JwtFilter;
 import com.dw.artgallery.jwt.TokenProvider;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -58,4 +59,9 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+
+    public static final Dotenv dotenv = Dotenv.configure()
+            .filename(".env")
+            .ignoreIfMissing()
+            .load();
 }
